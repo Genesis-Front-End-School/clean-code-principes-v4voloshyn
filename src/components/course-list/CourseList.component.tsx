@@ -14,6 +14,8 @@ export const CourseList: FC = () => {
   const [paginatedCourses, setPaginatedCourses] =
     useState<CourseItemPreview[]>(courses);
 
+  const showCoursesPerPageCount = 10;
+
   return (
     <div className="course-list">
       <h1 className="course-list__title">Course List</h1>
@@ -28,6 +30,7 @@ export const CourseList: FC = () => {
             previewImageLink,
             rating,
           } = course;
+
           return (
             <CourseItem
               key={id}
@@ -43,7 +46,7 @@ export const CourseList: FC = () => {
         })}
       </div>
       <Pagination
-        itemsPerPage={10}
+        itemsPerPage={showCoursesPerPageCount}
         items={courses}
         setPaginatedCourses={setPaginatedCourses}
       />

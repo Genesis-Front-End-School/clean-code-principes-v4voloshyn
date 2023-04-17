@@ -53,9 +53,9 @@ export const CourseItem: FC<CourseItemPreview> = ({
   };
 
   return (
-    <div className="course-card card">
+    <div className="course__card card">
       <div
-        className="card-image"
+        className="card__image"
         onMouseEnter={() => setIsVideoPlaying(true)}
         onMouseLeave={stopVideoOnMouseLeave}
       >
@@ -74,22 +74,22 @@ export const CourseItem: FC<CourseItemPreview> = ({
           <img src={`${previewImageLink}/cover.webp`} alt={title} />
         )}
       </div>
-      <div className="card-body">
-        <div className="card-description">
-          <div className="card-title">
+      <div className="card__body">
+        <div className="card__description">
+          <div className="card__title">
             <h4>{title}</h4>
           </div>
           <SkillsList skillsList={skills} />
         </div>
-        <div className="card-footer">
+        <div className="card__footer">
           <Button
             buttonText="Watch lessons"
             isLoading={isCoursePageLoading}
             onClick={() => goToCoursePage(id)}
           />
-          <div className="card-footer_bottom">
-            <div className="card-lessons">Lessons: {lessonsCount}</div>
-            <div className="card-rating">
+          <div className="card__footer_bottom">
+            <div className="card__lessons">Lessons: {lessonsCount}</div>
+            <div className="card__rating">
               {rating ? (
                 <>
                   Rating {rating}/5

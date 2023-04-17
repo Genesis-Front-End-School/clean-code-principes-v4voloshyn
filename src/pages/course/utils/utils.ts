@@ -11,3 +11,10 @@ export const getTotalLessonsDurationInMin = (
 export const formatSlug = (slug: string): string => {
   return (slug[0].toUpperCase() + slug.slice(1)).split('-').join(' ');
 };
+
+export const formatPreviewImageURL = (
+  previewImageLink: string,
+  order: number
+): string => {
+  return `${previewImageLink}/lesson-${order}.webp`;
+};

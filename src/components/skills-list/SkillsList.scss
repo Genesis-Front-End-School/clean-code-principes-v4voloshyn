@@ -9,10 +9,9 @@
 	flex-direction: column;
 	background-color: rgba(155, 155, 155, 0.075);
 	border-radius: 50px;
-
 }
 
-.skill-list {
+.skill__list {
 	margin-top: 10px;
 	display: flex;
 	gap: 5px;
@@ -20,8 +19,7 @@
 	justify-content: center;
 }
 
-
-.skill-item {
+.skill__item {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -37,7 +35,7 @@
 	padding: 8px;
 }
 
-.skill-status {
+.skill__marker {
 	background-color: #4d4d4d;
 	height: 4px;
 	width: 4px;
@@ -46,6 +44,6 @@
 	margin-right: 8px;
 }
 
-.skill-text {
+.skill__text {
 	font-size: 13px;
 }

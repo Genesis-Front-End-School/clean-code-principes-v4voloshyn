@@ -1,6 +1,8 @@
-import { FC, useEffect } from 'react';
-import clsx from 'clsx';
+import { FC } from 'react';
 import { FaLock, FaPlayCircle, FaUnlink } from 'react-icons/fa';
+import clsx from 'clsx';
+
+import { formatPreviewImageURL } from '../../pages/course/utils/utils';
 
 import { VideoLesson } from '../../types/types';
 
@@ -32,31 +34,26 @@ export const LessonItem: FC<LessonItemProps> = ({
   const lockedStatus = status === 'locked';
   const noVideoLink = !link || link.length === 0;
   const isLessonActive = link && activeLessonVideoLink === link;
-  const activeLessonPreviewImage = `${previewImageLink}/lesson-${order}.webp`;
 
   const selectLessonToView = () => {
     if (!lockedStatus) {
-      handleChangeLessonData(link, activeLessonPreviewImage);
+      handleChangeLessonData(
+        link,
+        formatPreviewImageURL(previewImageLink, order)
+      );
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
   const itemStyles = clsx(`lesson__item`, {
     lesson__item_active: isLessonActive,
     lesson__item_locked: lockedStatus || noVideoLink,
   });
 
-  useEffect(() => {
-    if (order === 1) {
-      console.log(link);
-
-      handleChangeLessonData(link, activeLessonPreviewImage);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className={itemStyles}>
-      <input type="checkbox" name="lesson-viewed" className="lesson-viewed" />
+      <input type="checkbox" name="lesson-viewed" className="lesson__viewed" />
       <button
         type="button"
         className="lesson__info"

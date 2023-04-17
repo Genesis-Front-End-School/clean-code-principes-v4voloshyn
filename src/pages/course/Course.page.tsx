@@ -1,13 +1,21 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
 import { Spinner } from '../../components/spinner/Spinner.component';
 import { LessonsList } from '../../components/lessons-list/LessonsList.component';
 import { VideoPlayer } from '../../components/video-player/VideoPlayer.component';
 
-import { ICourseItem } from '../../types/types';
+import {
+  ICourseItem,
+  VideoLesson,
+  VideoPlayerSrcLinks,
+} from '../../types/types';
 
-import { formatSlug, getTotalLessonsDurationInMin } from './utils/utils';
+import {
+  formatSlug,
+  getTotalLessonsDurationInMin,
+  formatPreviewImageURL,
+} from './utils/utils';
 
 import './Course.scss';
 
@@ -23,7 +31,19 @@ export const Course: FC = () => {
 
   const { state: pageLoadingStatus } = useNavigation();
 
-  const courseSlag = formatSlug(slug);
+  const courseSlug = formatSlug(slug);
+
+  const firstLessonByOrderLinks = useCallback(
+    (lessonsList: VideoLesson[]): VideoPlayerSrcLinks => {
+      const firstLesson = lessonsList.filter((lesson) => lesson.order === 1);
+      const lessonImagePreviewLink = formatPreviewImageURL(
+        firstLesson[0].previewImageLink,
+        1
+      );
+      return [firstLesson[0].link, lessonImagePreviewLink];
+    },
+    []
+  );
 
   const handleChangeLessonData = (
     videoSrc: string,
@@ -34,17 +54,19 @@ export const Course: FC = () => {
   };
 
   useEffect(() => {
+    handleChangeLessonData(...firstLessonByOrderLinks(lessons));
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [firstLessonByOrderLinks, lessons]);
 
   if (pageLoadingStatus === 'loading') {
     return <Spinner size="fullscreen" />;
   }
 
   return (
-    <div className="course course-wrapper">
+    <div className="course course__wrapper">
       <div className="course__main">
-        <div className="player-wrapper">
+        <div className="player__wrapper">
           <VideoPlayer
             srcUrl={hlsUrl}
             videoTitle={title}
@@ -53,7 +75,7 @@ export const Course: FC = () => {
         </div>
         <div className="course__description">
           <h1 className="course__title">{title}</h1>
-          <h4 className="course__slag">Slug: {courseSlag}</h4>
+          <h4 className="course__slag">Slug: {courseSlug}</h4>
           <p className="course__descr">{description}</p>
         </div>
       </div>

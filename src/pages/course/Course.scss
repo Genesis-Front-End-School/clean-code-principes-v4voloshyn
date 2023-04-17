@@ -1,56 +1,56 @@
-.course-wrapper {
-	display: flex;
+.course__wrapper {
+  display: flex;
 }
 
 .course__main {
-	display: flex;
-	flex-direction: column;
-	flex: 1 1 auto;
-	min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100vh;
 }
 
 .course__descr {
-	padding-right: 25px;
+  padding-right: 25px;
 }
 
 .course__lessons {
-	max-height: 100vh;
-	overflow-y: auto;
-	margin-top: 10px;
-	display: flex;
-	padding-left: 5px;
-	flex-direction: column;
-	flex: 0 0 250px;
-	border-left: 1px solid var(--color-bg-disabled);
+  max-height: 100vh;
+  overflow-y: auto;
+  margin-top: 10px;
+  display: flex;
+  padding-left: 5px;
+  flex-direction: column;
+  flex: 0 0 250px;
+  border-left: 1px solid var(--color-bg-disabled);
 }
 
 .course__lessons-timetotal {
-	font-size: 12px;
+  font-size: 12px;
 }
 
-@media screen and (max-width: 996.98px) {
-	.course-wrapper {
-		display: flex;
-		flex-direction: column;
-	}
+@media screen and (max-width: 999.98px) {
+  .course__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
-	.course__main {
-		min-height: 100%;
-	}
+  .course__main {
+    min-height: 100%;
+  }
 
-	.course__lessons {
-		height: auto;
-		position: static;
-		overflow-y: visible;
-		margin-top: 10px;
-		display: flex;
-		padding-left: 5px;
-		flex-direction: column;
-		flex: 0 0 250px;
-		border-left: 1px solid var(--color-bg-disabled);
-	}
+  .course__lessons {
+    height: auto;
+    position: static;
+    overflow-y: visible;
+    margin-top: 10px;
+    display: flex;
+    padding-left: 5px;
+    flex-direction: column;
+    flex: 0 0 250px;
+    border-left: 1px solid var(--color-bg-disabled);
+  }
 
-	.course__descr {
-		padding-right: inherit
-	}
+  .course__descr {
+    padding-right: inherit;
+  }
 }

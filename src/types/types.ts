@@ -42,3 +42,8 @@ export type CourseItemPreview = Pick<
   ICourseItem,
   'id' | 'title' | 'previewImageLink' | 'lessonsCount' | 'rating' | 'lessons'
 > & { meta: Pick<IMeta, 'skills' | 'courseVideoPreview'> };
+
+export type VideoPlayerSrcLinks = [
+  VideoLesson['link'],
+  VideoLesson['previewImageLink']
+];

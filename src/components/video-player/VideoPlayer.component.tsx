@@ -19,8 +19,8 @@ interface VideoPlayerProps {
 export const VideoPlayer: FC<VideoPlayerProps> = ({
   srcUrl,
   previewPoster,
-  videoTitle,
   config,
+  videoTitle = 'Video title',
   isLight = true,
   controls = true,
   playing = true,
@@ -40,9 +40,6 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({
       volume={volume}
       muted={muted}
       onReady={onReady}
-      onError={(error, data) =>
-        console.log('ERROR OBJECT', { errorStack: error, dataStack: data })
-      }
       pip
       config={{
         file: {

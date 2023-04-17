@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import { ICourseItem } from '../../types/types';
-
 import { LessonItem } from '../lesson-item/LessonItem.component';
+
+import { ICourseItem, VideoLesson } from '../../types/types';
 
 import './LessonsList.scss';
 
@@ -18,28 +18,35 @@ export const LessonsList: FC<LessonsListProps> = ({
 }) => {
   const { lessons } = useLoaderData() as ICourseItem;
 
+  const sortVideoLessonsByASCOrder = (
+    lessonsList: VideoLesson[]
+  ): VideoLesson[] => {
+    return lessonsList.sort(
+      (lessonA, lessonB) => lessonA.order - lessonB.order
+    );
+  };
+
   return (
     <div className="lesson__list">
-      {lessons
-        .sort((a, b) => a.order - b.order)
-        .map((lesson, index) => {
-          const { id, status, title, duration, link, previewImageLink, order } =
-            lesson;
-          return (
-            <LessonItem
-              key={id}
-              index={index + 1}
-              title={title}
-              status={status}
-              order={order}
-              duration={duration}
-              handleChangeLessonData={handleChangeLessonData}
-              link={link}
-              activeLessonVideoLink={activeLessonVideoLink}
-              previewImageLink={previewImageLink}
-            />
-          );
-        })}
+      {sortVideoLessonsByASCOrder(lessons).map((lesson, index) => {
+        const { id, status, title, duration, link, previewImageLink, order } =
+          lesson;
+
+        return (
+          <LessonItem
+            key={id}
+            index={index + 1}
+            title={title}
+            status={status}
+            order={order}
+            duration={duration}
+            handleChangeLessonData={handleChangeLessonData}
+            link={link}
+            activeLessonVideoLink={activeLessonVideoLink}
+            previewImageLink={previewImageLink}
+          />
+        );
+      })}
     </div>
   );
 };

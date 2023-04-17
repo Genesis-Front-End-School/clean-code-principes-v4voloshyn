@@ -16,12 +16,12 @@ export const SkillsList: FC<SkillsListProps> = ({ skillsList }) => {
   return (
     <div className="skill__wrapper skill">
       Skills:
-      <div className="skill-list">
+      <div className="skill__list">
         {skillsList.map((skill) => {
           return (
-            <div className="skill-item" key={skill}>
-              <span className="skill-status" />
-              <span className="skill-text">{skill}</span>
+            <div className="skill__item" key={skill}>
+              <span className="skill__marker" />
+              <span className="skill__text">{skill}</span>
             </div>
           );
         })}
