@@ -1,0 +1,50 @@
+:root {
+  --font-family-primary: 'Nunito', sans-serif;
+  --color-primary: #41c1f4;
+  --color-primary-light: rgba(65, 193, 244, 0.201);
+  --color-text-primary: rgba(0, 0, 0, 0.87);
+  --color-bg-main: #f8f8f8;
+  --color-bg-active: #ffe302;
+  --color-bg-hover: #ffe302;
+  --color-bg-disabled: #b4b4b4;
+  --color-bg-lightdark: #eee;
+  --h1-size: 32px;
+  --h4-size: 16px;
+  --font-size-primary: 16px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: var(--font-family-primary);
+  font-weight: 400;
+  background-color: var(--color-bg-main);
+  font-size: var(--font-size-primary);
+}
+
+#root {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+h1 {
+  font-size: var(--h1-size);
+}
+
+h4 {
+  font-size: var(--h4-size);
+}

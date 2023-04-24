@@ -1,0 +1,34 @@
+.react-player__preview {
+  max-width: 100%;
+  height: 100%;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.player__wrapper {
+  max-height: 480px;
+  height: 100%;
+  width: 100%;
+}
+
+.video-player {
+  display: flex;
+  align-items: flex-start;
+
+  & video {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 999.98px) {
+  .player__wrapper {
+    min-height: 320px;
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+}
