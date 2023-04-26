@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
-import { Spinner } from '../../components/spinner/Spinner.component';
+import { Spinner } from '../../components/UI/spinner/Spinner.component';
 import { LessonsList } from '../../components/lessons-list/LessonsList.component';
 import { VideoPlayer } from '../../components/video-player/VideoPlayer.component';
 
