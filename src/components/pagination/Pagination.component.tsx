@@ -2,6 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import { FIRST_PAGE, DEFAULT_ITEMS_PER_PAGE, PAGE_RANGE } from './constants';
+
 import './Pagination.scss';
 
 interface PaginationProps {
@@ -12,10 +14,10 @@ interface PaginationProps {
 
 export const Pagination: FC<PaginationProps> = ({
   totalPageCount,
-  itemsPerPage,
+  itemsPerPage = DEFAULT_ITEMS_PER_PAGE,
   setStartOffset,
 }) => {
-  const [initialPage, setInitialPage] = useState(0);
+  const [initialPage, setInitialPage] = useState(1);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -27,24 +29,29 @@ export const Pagination: FC<PaginationProps> = ({
   };
 
   useEffect(() => {
-    const initialPageFromParams = Number(searchParams.get('page') || 1);
+    const initialPageFromParams = Number(
+      searchParams.get('page') || FIRST_PAGE
+    );
 
-    if (initialPageFromParams > totalPageCount || initialPageFromParams < 1) {
+    if (
+      initialPageFromParams > totalPageCount ||
+      initialPageFromParams < FIRST_PAGE
+    ) {
       navigate('/', { replace: true });
-      setInitialPage(0);
+      setInitialPage(1);
     } else {
-      setInitialPage(initialPageFromParams - 1);
+      setInitialPage(initialPageFromParams);
       setStartOffset((initialPageFromParams - 1) * itemsPerPage);
     }
   }, [navigate, itemsPerPage, searchParams, setStartOffset, totalPageCount]);
 
   return (
     <ReactPaginate
-      forcePage={initialPage}
+      forcePage={initialPage - 1}
       breakLabel="..."
       nextLabel="Next >"
       onPageChange={handlePageClick}
-      pageRangeDisplayed={3}
+      pageRangeDisplayed={PAGE_RANGE}
       pageCount={totalPageCount}
       previousLabel="< Previous"
       renderOnZeroPageCount={() => null}

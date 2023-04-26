@@ -29,6 +29,8 @@ export const CourseItem: FC<CourseItemPreview> = ({
   const videoPreviewLink = courseVideoPreview?.link;
 
   useEffect(() => {
+    const SHOW_VIDEO_DELAY_MS = 1000;
+
     if (isVideoPlaying && videoPreviewLink) {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -36,7 +38,7 @@ export const CourseItem: FC<CourseItemPreview> = ({
 
       timeoutRef.current = window.setTimeout(() => {
         setShowVideoPlayer(true);
-      }, 1000);
+      }, SHOW_VIDEO_DELAY_MS);
     }
 
     return () => clearTimeout(timeoutRef.current);
