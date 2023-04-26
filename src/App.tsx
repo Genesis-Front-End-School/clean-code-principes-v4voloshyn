@@ -8,7 +8,7 @@ export const App = () => {
   return (
     <RouterProvider
       router={router}
-      fallbackElement={<Spinner size="fullscreen" />}
+      fallbackElement={<Spinner variant="fullscreen" />}
     />
   );
 };

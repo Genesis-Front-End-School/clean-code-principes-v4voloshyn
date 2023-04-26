@@ -60,7 +60,7 @@ export const Course: FC = () => {
   }, [firstLessonByOrderLinks, lessons]);
 
   if (pageLoadingStatus === 'loading') {
-    return <Spinner size="fullscreen" />;
+    return <Spinner variant="fullscreen" />;
   }
 
   return (
