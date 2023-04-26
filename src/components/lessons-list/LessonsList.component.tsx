@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import { LessonItem } from '../lesson-item/LessonItem.component';
@@ -18,17 +18,13 @@ export const LessonsList: FC<LessonsListProps> = ({
 }) => {
   const { lessons } = useLoaderData() as ICourseItem;
 
-  const sortVideoLessonsByASCOrder = (
-    lessonsList: VideoLesson[]
-  ): VideoLesson[] => {
-    return lessonsList.sort(
-      (lessonA, lessonB) => lessonA.order - lessonB.order
-    );
-  };
+  const sortedVideoLessonsByASCOrder = useMemo((): VideoLesson[] => {
+    return lessons.sort((lessonA, lessonB) => lessonA.order - lessonB.order);
+  }, [lessons]);
 
   return (
     <div className="lesson__list">
-      {sortVideoLessonsByASCOrder(lessons).map((lesson, index) => {
+      {sortedVideoLessonsByASCOrder.map((lesson, index) => {
         const { id, status, title, duration, link, previewImageLink, order } =
           lesson;
 
