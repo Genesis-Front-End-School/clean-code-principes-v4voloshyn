@@ -42,6 +42,10 @@ export const CourseItem: FC<CourseItemPreview> = ({
     return () => clearTimeout(timeoutRef.current);
   }, [isVideoPlaying, videoPreviewLink]);
 
+  const startVideoOnMouseEnter = () => {
+    setIsVideoPlaying(true);
+  };
+
   const stopVideoOnMouseLeave = () => {
     setIsVideoPlaying(false);
     setShowVideoPlayer(false);
@@ -56,7 +60,7 @@ export const CourseItem: FC<CourseItemPreview> = ({
     <div className="course__card card">
       <div
         className="card__image"
-        onMouseEnter={() => setIsVideoPlaying(true)}
+        onMouseEnter={startVideoOnMouseEnter}
         onMouseLeave={stopVideoOnMouseLeave}
       >
         {showVideoPlayer ? (

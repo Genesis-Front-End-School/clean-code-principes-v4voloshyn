@@ -33,7 +33,7 @@ export const Course: FC = () => {
 
   const courseSlug = formatSlug(slug);
 
-  const firstLessonByOrderLinks = useCallback(
+  const getLinksOfFirstLessonByOrder = useCallback(
     (lessonsList: VideoLesson[]): VideoPlayerSrcLinks => {
       const firstLesson = lessonsList.filter((lesson) => lesson.order === 1);
       const lessonImagePreviewLink = formatPreviewImageURL(
@@ -45,19 +45,19 @@ export const Course: FC = () => {
     []
   );
 
-  const handleChangeLessonData = (
-    videoSrc: string,
-    imagePreviewLink: string
-  ): void => {
-    setHlsUrl(videoSrc);
-    setLessonPreviewImgUrl(imagePreviewLink);
-  };
+  const handleChangeLessonData = useCallback(
+    (videoSrc: string, imagePreviewLink: string): void => {
+      setHlsUrl(videoSrc);
+      setLessonPreviewImgUrl(imagePreviewLink);
+    },
+    []
+  );
 
   useEffect(() => {
-    handleChangeLessonData(...firstLessonByOrderLinks(lessons));
+    handleChangeLessonData(...getLinksOfFirstLessonByOrder(lessons));
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [firstLessonByOrderLinks, lessons]);
+  }, [getLinksOfFirstLessonByOrder, handleChangeLessonData, lessons]);
 
   if (pageLoadingStatus === 'loading') {
     return <Spinner variant="fullscreen" />;
