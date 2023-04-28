@@ -29,28 +29,7 @@ export const CourseList: FC = () => {
       <h1 className="course-list__title">Course List</h1>
       <div className="courses">
         {paginatedCourses.map((course) => {
-          const {
-            id,
-            title,
-            lessons,
-            lessonsCount,
-            meta,
-            previewImageLink,
-            rating,
-          } = course;
-
-          return (
-            <CourseItem
-              key={id}
-              id={id}
-              title={title}
-              previewImageLink={previewImageLink}
-              rating={rating}
-              lessonsCount={lessonsCount}
-              meta={meta}
-              lessons={lessons}
-            />
-          );
+          return <CourseItem key={course.id} courseData={course} />;
         })}
       </div>
       <Pagination

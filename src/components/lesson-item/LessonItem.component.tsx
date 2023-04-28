@@ -9,28 +9,17 @@ import { VideoLesson } from '../../types/types';
 import './LessonItem.scss';
 
 interface LessonItemProps {
-  index: number;
-  title: VideoLesson['title'];
-  status: VideoLesson['status'];
-  link: VideoLesson['link'];
-  order: number;
-  duration: VideoLesson['duration'];
+  lessonData: VideoLesson;
   handleChangeLessonData: (videoSrc: string, imagePreviewLink: string) => void;
   activeLessonVideoLink: string;
-  previewImageLink: string;
 }
 
 export const LessonItem: FC<LessonItemProps> = ({
-  index,
-  status,
-  title,
-  link,
-  order,
-  duration,
+  lessonData,
   handleChangeLessonData,
   activeLessonVideoLink,
-  previewImageLink,
 }) => {
+  const { status, title, duration, link, previewImageLink, order } = lessonData;
   const lockedStatus = status === 'locked';
   const noVideoLink = !link || link.length === 0;
   const isLessonActive = link && activeLessonVideoLink === link;
@@ -60,7 +49,7 @@ export const LessonItem: FC<LessonItemProps> = ({
         onClick={selectLessonToView}
       >
         <div className="lesson__title" title="">
-          {index}. {title}
+          {order}. {title}
         </div>
         <div className="lesson__description">
           {lockedStatus && <FaLock />}

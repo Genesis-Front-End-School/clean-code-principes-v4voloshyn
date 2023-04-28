@@ -24,22 +24,13 @@ export const LessonsList: FC<LessonsListProps> = ({
 
   return (
     <div className="lesson__list">
-      {sortedVideoLessonsByASCOrder.map((lesson, index) => {
-        const { id, status, title, duration, link, previewImageLink, order } =
-          lesson;
-
+      {sortedVideoLessonsByASCOrder.map((lesson) => {
         return (
           <LessonItem
-            key={id}
-            index={index + 1}
-            title={title}
-            status={status}
-            order={order}
-            duration={duration}
+            key={lesson.id}
+            lessonData={lesson}
             handleChangeLessonData={handleChangeLessonData}
-            link={link}
             activeLessonVideoLink={activeLessonVideoLink}
-            previewImageLink={previewImageLink}
           />
         );
       })}

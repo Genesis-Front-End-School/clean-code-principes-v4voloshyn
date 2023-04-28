@@ -10,14 +10,14 @@ import { CourseItemPreview } from '../../types/types';
 
 import './CourseItem.scss';
 
-export const CourseItem: FC<CourseItemPreview> = ({
-  id,
-  title,
-  previewImageLink,
-  lessonsCount,
-  rating,
-  meta: { skills = [], courseVideoPreview },
-}) => {
+interface ICourseItemProps {
+  courseData: CourseItemPreview;
+}
+
+export const CourseItem: FC<ICourseItemProps> = ({ courseData }) => {
+  const { id, title, lessonsCount, meta, previewImageLink, rating } =
+    courseData;
+  const { skills, courseVideoPreview } = meta;
   const [isCoursePageLoading, setIsCoursePageLoading] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showVideoPlayer, setShowVideoPlayer] = useState(false);
