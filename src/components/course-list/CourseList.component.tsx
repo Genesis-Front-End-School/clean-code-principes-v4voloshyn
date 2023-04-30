@@ -4,19 +4,20 @@ import { useLoaderData } from 'react-router-dom';
 import { CourseItem } from '../course-item/CourseItem.component';
 import { Pagination } from '../pagination/Pagination.component';
 
-import { CourseItemPreview } from '../../types/types';
+import { CourseItemPreview } from '../../@types/types';
 
 import './CourseList.scss';
 
 export const CourseList: FC = () => {
   const courses = useLoaderData() as CourseItemPreview[];
-  const [paginatedCourses, setPaginatedCourses] = useState(courses);
+  const [paginatedCourses, setPaginatedCourses] =
+    useState<CourseItemPreview[]>(courses);
   const [startOffset, setStartOffset] = useState(0);
 
   const COURSES_PER_PAGE_COUNT = 10;
-  const endOffset = startOffset + COURSES_PER_PAGE_COUNT;
+  const endOffset: number = startOffset + COURSES_PER_PAGE_COUNT;
 
-  const totalPageCount = useMemo(() => {
+  const totalPageCount: number = useMemo(() => {
     return Math.ceil(courses.length / COURSES_PER_PAGE_COUNT);
   }, [courses.length]);
 

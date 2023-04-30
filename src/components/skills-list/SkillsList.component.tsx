@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { IMeta } from '../../types/types';
+import { ICourseMeta } from '../../@types/types';
 
 import './SkillsList.scss';
 
 interface SkillsListProps {
-  skillsList: IMeta['skills'];
+  skillsList: ICourseMeta['skills'];
 }
 
 export const SkillsList: FC<SkillsListProps> = ({ skillsList = [] }) => {

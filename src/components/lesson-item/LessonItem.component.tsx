@@ -4,12 +4,12 @@ import clsx from 'clsx';
 
 import { formatPreviewImageURL } from '../../pages/course/utils/utils';
 
-import { VideoLesson } from '../../types/types';
+import { IVideoLesson } from '../../@types/types';
 
 import './LessonItem.scss';
 
 interface LessonItemProps {
-  lessonData: VideoLesson;
+  lessonData: IVideoLesson;
   handleChangeLessonData: (videoSrc: string, imagePreviewLink: string) => void;
   activeLessonVideoLink: string;
 }
@@ -20,12 +20,13 @@ export const LessonItem: FC<LessonItemProps> = ({
   activeLessonVideoLink,
 }) => {
   const { status, title, duration, link, previewImageLink, order } = lessonData;
-  const lockedStatus = status === 'locked';
+  const isLessonLocked = status === 'locked';
   const noVideoLink = !link || link.length === 0;
-  const isLessonActive = link && activeLessonVideoLink === link;
+  const isLessonActive = !noVideoLink && activeLessonVideoLink === link;
+  const lessonDurationInMin = Math.round(duration / 60);
 
   const selectLessonToView = () => {
-    if (!lockedStatus) {
+    if (!isLessonLocked) {
       handleChangeLessonData(
         link,
         formatPreviewImageURL(previewImageLink, order)
@@ -37,7 +38,7 @@ export const LessonItem: FC<LessonItemProps> = ({
 
   const itemStyles = clsx(`lesson__item`, {
     lesson__item_active: isLessonActive,
-    lesson__item_locked: lockedStatus || noVideoLink,
+    lesson__item_locked: isLessonLocked || noVideoLink,
   });
 
   return (
@@ -52,9 +53,9 @@ export const LessonItem: FC<LessonItemProps> = ({
           {order}. {title}
         </div>
         <div className="lesson__description">
-          {lockedStatus && <FaLock />}
+          {isLessonLocked && <FaLock />}
           {noVideoLink && <FaUnlink />} <FaPlayCircle />
-          {Math.round(duration / 60)}min
+          {lessonDurationInMin}min
         </div>
       </button>
     </div>
