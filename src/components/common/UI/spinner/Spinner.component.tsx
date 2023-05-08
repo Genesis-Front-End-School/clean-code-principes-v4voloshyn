@@ -3,11 +3,11 @@ import { FC } from 'react';
 import './Spinner.scss';
 
 interface SpinnerProps {
-  size?: 'small' | 'fullscreen';
+  variant?: 'small' | 'fullscreen';
 }
 
-export const Spinner: FC<SpinnerProps> = ({ size = 'small' }) => {
-  if (size === 'fullscreen') {
+export const Spinner: FC<SpinnerProps> = ({ variant = 'small' }) => {
+  if (variant === 'fullscreen') {
     return <div className="spinner" />;
   }
 

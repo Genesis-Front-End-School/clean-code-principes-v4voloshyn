@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-import { Button } from '../UI/button/Button.component';
+import { Button } from '../common/UI/button/Button.component';
 import { SkillsList } from '../skills-list/SkillsList.component';
 import { VideoPlayer } from '../video-player/VideoPlayer.component';
 
@@ -10,14 +10,14 @@ import { CourseItemPreview } from '../../types/types';
 
 import './CourseItem.scss';
 
-export const CourseItem: FC<CourseItemPreview> = ({
-  id,
-  title,
-  previewImageLink,
-  lessonsCount,
-  rating,
-  meta: { skills = [], courseVideoPreview },
-}) => {
+interface Props {
+  courseData: CourseItemPreview;
+}
+
+export const CourseItem: FC<Props> = ({ courseData }) => {
+  const { id, title, lessonsCount, meta, previewImageLink, rating } =
+    courseData;
+  const { skills, courseVideoPreview } = meta;
   const [isCoursePageLoading, setIsCoursePageLoading] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showVideoPlayer, setShowVideoPlayer] = useState(false);
@@ -27,6 +27,7 @@ export const CourseItem: FC<CourseItemPreview> = ({
   const navigate = useNavigate();
 
   const videoPreviewLink = courseVideoPreview?.link;
+  const SHOW_VIDEO_DELAY_MS = 1000;
 
   useEffect(() => {
     if (isVideoPlaying && videoPreviewLink) {
@@ -36,11 +37,15 @@ export const CourseItem: FC<CourseItemPreview> = ({
 
       timeoutRef.current = window.setTimeout(() => {
         setShowVideoPlayer(true);
-      }, 1000);
+      }, SHOW_VIDEO_DELAY_MS);
     }
 
     return () => clearTimeout(timeoutRef.current);
   }, [isVideoPlaying, videoPreviewLink]);
+
+  const startVideoOnMouseEnter = () => {
+    setIsVideoPlaying(true);
+  };
 
   const stopVideoOnMouseLeave = () => {
     setIsVideoPlaying(false);
@@ -56,7 +61,7 @@ export const CourseItem: FC<CourseItemPreview> = ({
     <div className="course__card card">
       <div
         className="card__image"
-        onMouseEnter={() => setIsVideoPlaying(true)}
+        onMouseEnter={startVideoOnMouseEnter}
         onMouseLeave={stopVideoOnMouseLeave}
       >
         {showVideoPlayer ? (

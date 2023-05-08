@@ -8,9 +8,9 @@ interface SkillsListProps {
   skillsList: IMeta['skills'];
 }
 
-export const SkillsList: FC<SkillsListProps> = ({ skillsList }) => {
+export const SkillsList: FC<SkillsListProps> = ({ skillsList = [] }) => {
   if (!skillsList.length) {
-    return <div>Secret inside the book</div>;
+    return <div className="skill__item">Secret inside the book</div>;
   }
 
   return (

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { FC, ReactNode } from 'react';
 
-import { Spinner } from '../../spinner/Spinner.component';
+import { Spinner } from '../spinner/Spinner.component';
 
 import './Button.scss';
 

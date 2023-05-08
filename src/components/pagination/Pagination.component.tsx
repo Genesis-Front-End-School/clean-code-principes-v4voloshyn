@@ -1,48 +1,57 @@
-import React, { FC, useState, useEffect, useMemo } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { CourseItemPreview } from '../../types/types';
+import { FIRST_PAGE, DEFAULT_ITEMS_PER_PAGE, PAGE_RANGE } from './constants';
 
 import './Pagination.scss';
 
 interface PaginationProps {
+  totalPageCount: number;
   itemsPerPage: number;
-  items: CourseItemPreview[];
-  setPaginatedCourses: React.Dispatch<
-    React.SetStateAction<CourseItemPreview[]>
-  >;
+  setStartOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Pagination: FC<PaginationProps> = ({
-  itemsPerPage = 10,
-  items = [],
-  setPaginatedCourses,
+  totalPageCount,
+  itemsPerPage = DEFAULT_ITEMS_PER_PAGE,
+  setStartOffset,
 }) => {
-  const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + itemsPerPage;
+  const [initialPage, setInitialPage] = useState(1);
 
-  const currentPageCourses = useMemo(() => {
-    return items.slice(itemOffset, endOffset);
-  }, [endOffset, itemOffset, items]);
-
-  const totalPageCount = Math.ceil(items.length / itemsPerPage);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const handlePageClick = ({ selected }: { selected: number }) => {
-    const newOffset = (selected * itemsPerPage) % items.length;
-    setItemOffset(newOffset);
+    setStartOffset(itemsPerPage * selected);
+    setSearchParams({ page: `${selected + 1}` });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    setPaginatedCourses(currentPageCourses);
-  }, [currentPageCourses, setPaginatedCourses]);
+    const initialPageFromParams = Number(
+      searchParams.get('page') || FIRST_PAGE
+    );
+
+    if (
+      initialPageFromParams > totalPageCount ||
+      initialPageFromParams < FIRST_PAGE
+    ) {
+      navigate('/', { replace: true });
+      setInitialPage(1);
+    } else {
+      setInitialPage(initialPageFromParams);
+      setStartOffset((initialPageFromParams - 1) * itemsPerPage);
+    }
+  }, [navigate, itemsPerPage, searchParams, setStartOffset, totalPageCount]);
 
   return (
     <ReactPaginate
+      forcePage={initialPage - 1}
       breakLabel="..."
       nextLabel="Next >"
       onPageChange={handlePageClick}
-      pageRangeDisplayed={3}
+      pageRangeDisplayed={PAGE_RANGE}
       pageCount={totalPageCount}
       previousLabel="< Previous"
       renderOnZeroPageCount={() => null}

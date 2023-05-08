@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
-import { Spinner } from '../../components/spinner/Spinner.component';
+import { Spinner } from '../../components/common/UI/spinner/Spinner.component';
 import { LessonsList } from '../../components/lessons-list/LessonsList.component';
 import { VideoPlayer } from '../../components/video-player/VideoPlayer.component';
 
@@ -33,7 +33,7 @@ export const Course: FC = () => {
 
   const courseSlug = formatSlug(slug);
 
-  const firstLessonByOrderLinks = useCallback(
+  const getLinksOfFirstLessonByOrder = useCallback(
     (lessonsList: VideoLesson[]): VideoPlayerSrcLinks => {
       const firstLesson = lessonsList.filter((lesson) => lesson.order === 1);
       const lessonImagePreviewLink = formatPreviewImageURL(
@@ -45,22 +45,22 @@ export const Course: FC = () => {
     []
   );
 
-  const handleChangeLessonData = (
-    videoSrc: string,
-    imagePreviewLink: string
-  ): void => {
-    setHlsUrl(videoSrc);
-    setLessonPreviewImgUrl(imagePreviewLink);
-  };
+  const handleChangeLessonData = useCallback(
+    (videoSrc: string, imagePreviewLink: string): void => {
+      setHlsUrl(videoSrc);
+      setLessonPreviewImgUrl(imagePreviewLink);
+    },
+    []
+  );
 
   useEffect(() => {
-    handleChangeLessonData(...firstLessonByOrderLinks(lessons));
+    handleChangeLessonData(...getLinksOfFirstLessonByOrder(lessons));
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [firstLessonByOrderLinks, lessons]);
+  }, [getLinksOfFirstLessonByOrder, handleChangeLessonData, lessons]);
 
   if (pageLoadingStatus === 'loading') {
-    return <Spinner size="fullscreen" />;
+    return <Spinner variant="fullscreen" />;
   }
 
   return (
