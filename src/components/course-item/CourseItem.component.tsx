@@ -10,11 +10,11 @@ import { CourseItemPreview } from '../../@types/types';
 
 import './CourseItem.scss';
 
-interface ICourseItemProps {
+interface Props {
   courseData: CourseItemPreview;
 }
 
-export const CourseItem: FC<ICourseItemProps> = ({ courseData }) => {
+export const CourseItem: FC<Props> = ({ courseData }) => {
   const { id, title, lessonsCount, meta, previewImageLink, rating } =
     courseData;
   const { skills, courseVideoPreview } = meta;
@@ -27,6 +27,7 @@ export const CourseItem: FC<ICourseItemProps> = ({ courseData }) => {
   const navigate = useNavigate();
 
   const videoPreviewLink = courseVideoPreview?.link;
+  const SHOW_VIDEO_DELAY_MS = 1000;
 
   useEffect(() => {
     const SHOW_VIDEO_DELAY_MS = 1000;
