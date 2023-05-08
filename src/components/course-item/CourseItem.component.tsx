@@ -30,8 +30,6 @@ export const CourseItem: FC<Props> = ({ courseData }) => {
   const SHOW_VIDEO_DELAY_MS = 1000;
 
   useEffect(() => {
-    const SHOW_VIDEO_DELAY_MS = 1000;
-
     if (isVideoPlaying && videoPreviewLink) {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
