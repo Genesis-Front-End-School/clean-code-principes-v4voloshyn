@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { Mock, vi } from 'vitest';
 
-import { fakeSingleCourse } from '../tests/__mocks__/mock-data';
+import { fakeSingleCourse } from '../tests/__mocks__/api-data';
 
 import { CustomErrorResponse, getRequest } from './api';
 import { instance } from './instance';
