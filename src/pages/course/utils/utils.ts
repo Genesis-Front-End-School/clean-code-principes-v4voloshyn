@@ -1,11 +1,13 @@
-import { VideoLesson } from '../../../types/types';
+import { IVideoLesson } from '../../../@types/types';
 
 export const getTotalLessonsDurationInMin = (
-  lessonsList: VideoLesson[]
+  lessonsList: IVideoLesson[]
 ): number => {
-  const totalDuration =
-    lessonsList.reduce((acc, lesson) => acc + lesson.duration, 0) / 60;
-  return Math.round(totalDuration);
+  const SECONDS_IN_ONE_MIN = 60;
+  const totalDurationInMin =
+    lessonsList.reduce((acc, lesson) => acc + lesson.duration, 0) /
+    SECONDS_IN_ONE_MIN;
+  return Math.round(totalDurationInMin);
 };
 
 export const formatSlug = (slug: string): string => {

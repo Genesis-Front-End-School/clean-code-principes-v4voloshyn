@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 import { LessonItem } from '../lesson-item/LessonItem.component';
 
-import { ICourseItem, VideoLesson } from '../../types/types';
+import { ICourse, IVideoLesson } from '../../@types/types';
 
 import './LessonsList.scss';
 
@@ -16,9 +16,9 @@ export const LessonsList: FC<LessonsListProps> = ({
   handleChangeLessonData,
   activeLessonVideoLink,
 }) => {
-  const { lessons } = useLoaderData() as ICourseItem;
+  const { lessons } = useLoaderData() as ICourse;
 
-  const sortedVideoLessonsByASCOrder = useMemo((): VideoLesson[] => {
+  const sortedVideoLessonsByASCOrder = useMemo((): IVideoLesson[] => {
     return lessons.sort((lessonA, lessonB) => lessonA.order - lessonB.order);
   }, [lessons]);
 

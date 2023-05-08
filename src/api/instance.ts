@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 import { getToken } from './auth/auth.api';
 import { BASE_URL } from './constants';
 
-export const instance = axios.create({
+export const instance: AxiosInstance = axios.create({
   baseURL: BASE_URL || '',
 });
 

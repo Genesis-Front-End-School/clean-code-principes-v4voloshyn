@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { FC, ReactNode } from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
 import { Spinner } from '../spinner/Spinner.component';
 
 import './Button.scss';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonText: string | ReactNode;
   onClick: () => void;
   isLoading?: boolean;
@@ -15,6 +15,7 @@ export const Button: FC<ButtonProps> = ({
   buttonText = 'Click me',
   onClick = () => {},
   isLoading = false,
+  ...rest
 }) => {
   return (
     <button
@@ -22,6 +23,7 @@ export const Button: FC<ButtonProps> = ({
       type="button"
       onClick={onClick}
       disabled={isLoading}
+      {...rest}
     >
       <span className="button__text">
         {isLoading ? <Spinner /> : buttonText}

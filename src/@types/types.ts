@@ -4,13 +4,13 @@ export interface ICourseVideoPreview {
   previewImageLink: string;
 }
 
-export interface IMeta {
+export interface ICourseMeta {
   slug: string;
   skills: string[];
   courseVideoPreview: ICourseVideoPreview;
 }
 
-export interface ICourseItem {
+export interface ICourse {
   id: string;
   title: string;
   tags: string[];
@@ -22,11 +22,11 @@ export interface ICourseItem {
   containsLockedLessons: boolean;
   previewImageLink: string;
   rating: number;
-  meta: IMeta;
-  lessons: VideoLesson[];
+  meta: ICourseMeta;
+  lessons: IVideoLesson[];
 }
 
-export interface VideoLesson {
+export interface IVideoLesson {
   id: string;
   title: string;
   duration: number;
@@ -39,11 +39,11 @@ export interface VideoLesson {
 }
 
 export type CourseItemPreview = Pick<
-  ICourseItem,
-  'id' | 'title' | 'previewImageLink' | 'lessonsCount' | 'rating' | 'lessons'
-> & { meta: Pick<IMeta, 'skills' | 'courseVideoPreview'> };
+  ICourse,
+  'id' | 'title' | 'previewImageLink' | 'lessonsCount' | 'rating'
+> & { meta: Pick<ICourseMeta, 'skills' | 'courseVideoPreview'> };
 
 export type VideoPlayerSrcLinks = [
-  VideoLesson['link'],
-  VideoLesson['previewImageLink']
+  IVideoLesson['link'],
+  IVideoLesson['previewImageLink']
 ];

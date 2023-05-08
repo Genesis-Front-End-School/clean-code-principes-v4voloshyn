@@ -4,10 +4,12 @@ import { FaGithub } from 'react-icons/fa';
 import './Footer.scss';
 
 export const Footer: FC = () => {
+  const currentYear: number = new Date().getFullYear();
+
   return (
     <div className="footer">
       <div className="footer__rights">
-        {new Date().getFullYear()}. All Rights Reserved :)
+        {currentYear}. All Rights Reserved :)
       </div>
       <div className="footer__author">
         Made by:{' '}

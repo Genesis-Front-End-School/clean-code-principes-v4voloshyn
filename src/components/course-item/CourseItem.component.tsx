@@ -6,7 +6,7 @@ import { Button } from '../common/UI/button/Button.component';
 import { SkillsList } from '../skills-list/SkillsList.component';
 import { VideoPlayer } from '../video-player/VideoPlayer.component';
 
-import { CourseItemPreview } from '../../types/types';
+import { CourseItemPreview } from '../../@types/types';
 
 import './CourseItem.scss';
 
