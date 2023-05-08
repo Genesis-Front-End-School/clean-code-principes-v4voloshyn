@@ -3,12 +3,12 @@ import axios, { AxiosResponse } from 'axios';
 import { AUTH } from '../endpoints';
 import { BASE_URL } from '../constants';
 
-type GetTokenResponse = {
+type TokenResponse = {
   token: string;
 };
 
-export const getToken = async (): Promise<GetTokenResponse> => {
-  const response: AxiosResponse<GetTokenResponse> = await axios.get(
+export const getToken = async (): Promise<TokenResponse> => {
+  const response: AxiosResponse<TokenResponse> = await axios.get(
     `${BASE_URL}${AUTH.TOKEN_ENDPOINT}`
   );
 
