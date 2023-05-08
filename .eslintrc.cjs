@@ -28,5 +28,28 @@ module.exports = {
     'react/require-default-props': 0,
     'prefer-destructuring': 0,
     'no-param-reassign': 0,
+    'import/order': [
+      2,
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        'newlines-between': 'always',
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+          },
+        ],
+        alphabetize: {
+          order: 'asc',
+        },
+      },
+    ],
   },
 };
