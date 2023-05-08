@@ -1,10 +1,9 @@
+import clsx from 'clsx';
 import { FC } from 'react';
 import { FaLock, FaPlayCircle, FaUnlink } from 'react-icons/fa';
-import clsx from 'clsx';
-
-import { formatPreviewImageURL } from '../../pages/course/utils/utils';
 
 import { IVideoLesson } from '../../@types/types';
+import { formatPreviewImageURL } from '../../pages/course/utils/utils';
 
 import './LessonItem.scss';
 

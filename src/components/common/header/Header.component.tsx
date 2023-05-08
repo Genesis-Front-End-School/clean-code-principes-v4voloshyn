@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { FaUserGraduate } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 

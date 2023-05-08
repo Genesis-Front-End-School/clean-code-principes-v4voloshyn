@@ -1,10 +1,9 @@
 import { FC, useState, useMemo, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+import { CourseItemPreview } from '../../@types/types';
 import { CourseItem } from '../course-item/CourseItem.component';
 import { Pagination } from '../pagination/Pagination.component';
-
-import { CourseItemPreview } from '../../@types/types';
 
 import './CourseList.scss';
 

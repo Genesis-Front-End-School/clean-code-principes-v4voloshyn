@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { AUTH } from '../endpoints';
 import { BASE_URL } from '../constants';
+import { AUTH } from '../endpoints';
 
 type TokenResponse = {
   token: string;
