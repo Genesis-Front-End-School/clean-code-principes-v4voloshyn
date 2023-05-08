@@ -37,11 +37,11 @@
 
 ⭕ **ADDITIONAL TASKS:**
 
-- ⬜ Handle API errors (network, Page 404 etc )
-  - ⬜ Create @ErrorComponent on every or one @RootComponent to intercept Error throwing
+- ✅ Handle API errors (network, Page 404 etc )
+  - ✅ Create @ErrorComponent on every or one @RootComponent to intercept Error throwing
 - ✅ Mobile adaptive
 - ⬜ \*Video loading animation + / -
-- ⬜ Test Coverage
+- ✅ Test Coverage
 
 <hr/>
 
