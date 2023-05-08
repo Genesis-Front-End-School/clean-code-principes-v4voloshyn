@@ -28,7 +28,7 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const originalConfig = error.config;
-    if (error.response.status === 401 && !originalConfig.isRetry) {
+    if (error.response?.status === 401 && !originalConfig.isRetry) {
       originalConfig.isRetry = true;
 
       try {
