@@ -1,11 +1,10 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
+import { ICourse, IVideoLesson, VideoPlayerSrcLinks } from '../../@types/types';
 import { Spinner } from '../../components/common/UI/spinner/Spinner.component';
 import { LessonsList } from '../../components/lessons-list/LessonsList.component';
 import { VideoPlayer } from '../../components/video-player/VideoPlayer.component';
-
-import { ICourse, IVideoLesson, VideoPlayerSrcLinks } from '../../@types/types';
 
 import {
   formatSlug,

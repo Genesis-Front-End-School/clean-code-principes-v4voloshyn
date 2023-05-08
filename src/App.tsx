@@ -1,7 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 
 import { Spinner } from './components/common/UI/spinner/Spinner.component';
-
 import { router } from './routes/routes';
 
 export const App = () => {

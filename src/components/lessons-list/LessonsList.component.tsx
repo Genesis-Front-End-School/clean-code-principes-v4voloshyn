@@ -1,9 +1,8 @@
 import { FC, useMemo } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import { LessonItem } from '../lesson-item/LessonItem.component';
-
 import { ICourse, IVideoLesson } from '../../@types/types';
+import { LessonItem } from '../lesson-item/LessonItem.component';
 
 import './LessonsList.scss';
 

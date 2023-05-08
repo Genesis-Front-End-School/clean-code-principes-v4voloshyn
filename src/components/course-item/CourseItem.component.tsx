@@ -1,12 +1,11 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
+import { CourseItemPreview } from '../../@types/types';
 import { Button } from '../common/UI/button/Button.component';
 import { SkillsList } from '../skills-list/SkillsList.component';
 import { VideoPlayer } from '../video-player/VideoPlayer.component';
-
-import { CourseItemPreview } from '../../@types/types';
 
 import './CourseItem.scss';
 
