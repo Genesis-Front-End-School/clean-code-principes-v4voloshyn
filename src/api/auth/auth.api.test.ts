@@ -4,7 +4,7 @@ import { MockedFunction, vi } from 'vitest';
 import {
   fakeResponseData,
   fakeTokenData,
-} from '../../tests/__mocks__/mock-data';
+} from '../../tests/__mocks__/api-data';
 import { BASE_URL } from '../constants';
 import { AUTH } from '../endpoints';
 

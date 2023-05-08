@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import { fakeCourses, fakeSingleCourse } from '../../tests/__mocks__/mock-data';
+import { fakeCourses, fakeSingleCourse } from '../../tests/__mocks__/api-data';
 
 import { getAllCourses, getCourseById } from './courses.api';
 
