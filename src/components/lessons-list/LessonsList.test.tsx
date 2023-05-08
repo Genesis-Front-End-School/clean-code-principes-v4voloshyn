@@ -84,6 +84,9 @@ describe('LessonsList', () => {
     );
 
     const lessonItem = getByText(/lesson 1/i);
+
+    expect(lessonItem).toBeInTheDocument();
+
     fireEvent.click(lessonItem);
 
     expect(handleChangeLessonDataMock).toHaveBeenCalledTimes(1);
