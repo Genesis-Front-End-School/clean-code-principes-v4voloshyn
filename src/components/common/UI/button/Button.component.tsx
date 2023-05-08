@@ -6,8 +6,8 @@ import { Spinner } from '../spinner/Spinner.component';
 import './Button.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  buttonText: string | ReactNode;
-  onClick: () => void;
+  buttonText?: string | ReactNode;
+  onClick?: () => void;
   isLoading?: boolean;
 }
 
