@@ -1,2 +1,2 @@
 vite.config.ts
-src/setupTests.ts
+src/tests/setupTests.ts
