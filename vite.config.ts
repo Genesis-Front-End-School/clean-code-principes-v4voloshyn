@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vitest" />
 
 import { defineConfig } from 'vite';
 import dns from 'dns';
@@ -11,5 +12,14 @@ export default defineConfig({
   server: {
     port: 5555,
     host: true,
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/setupTests.ts'],
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
+    },
   },
 });
