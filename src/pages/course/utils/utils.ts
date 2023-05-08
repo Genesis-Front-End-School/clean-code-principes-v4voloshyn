@@ -1,7 +1,7 @@
 import { IVideoLesson } from '../../../@types/types';
 
 export const getTotalLessonsDurationInMin = (
-  lessonsList: IVideoLesson[]
+  lessonsList: Pick<IVideoLesson, 'duration'>[]
 ): number => {
   const SECONDS_IN_ONE_MIN = 60;
   const totalDurationInMin =
@@ -11,6 +11,10 @@ export const getTotalLessonsDurationInMin = (
 };
 
 export const formatSlug = (slug: string): string => {
+  if (slug.length <= 0 || typeof slug !== 'string') {
+    return '';
+  }
+
   return (slug[0].toUpperCase() + slug.slice(1)).split('-').join(' ');
 };
 
