@@ -1,4 +1,4 @@
-import { ICourse, IVideoLesson } from '../../@types/types';
+import { ICourse, IVideoLesson } from '../../shared/@types/types';
 
 export const fakeLessons: Partial<IVideoLesson>[] = [
   {
