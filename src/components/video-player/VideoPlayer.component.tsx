@@ -3,7 +3,7 @@ import ReactPlayer, { Config } from 'react-player';
 
 import './VideoPlayer.scss';
 
-interface VideoPlayerProps {
+interface Props {
   srcUrl: string;
   previewPoster: string;
   videoTitle?: string;
@@ -16,7 +16,7 @@ interface VideoPlayerProps {
   onReady?: () => void;
 }
 
-export const VideoPlayer: FC<VideoPlayerProps> = ({
+export const VideoPlayer: FC<Props> = ({
   srcUrl,
   previewPoster,
   config,

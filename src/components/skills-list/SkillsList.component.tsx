@@ -4,11 +4,11 @@ import { ICourseMeta } from '../../@types/types';
 
 import './SkillsList.scss';
 
-interface SkillsListProps {
+interface Props {
   skillsList: ICourseMeta['skills'];
 }
 
-export const SkillsList: FC<SkillsListProps> = ({ skillsList = [] }) => {
+export const SkillsList: FC<Props> = ({ skillsList = [] }) => {
   if (!skillsList.length) {
     return <div className="skill__item">Secret inside the book</div>;
   }

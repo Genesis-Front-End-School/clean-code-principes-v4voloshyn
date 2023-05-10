@@ -7,13 +7,13 @@ import { formatPreviewImageURL } from '../../pages/course/utils/utils';
 
 import './LessonItem.scss';
 
-interface LessonItemProps {
+interface Props {
   lessonData: IVideoLesson;
   handleChangeLessonData: (videoSrc: string, imagePreviewLink: string) => void;
   activeLessonVideoLink: string;
 }
 
-export const LessonItem: FC<LessonItemProps> = ({
+export const LessonItem: FC<Props> = ({
   lessonData,
   handleChangeLessonData,
   activeLessonVideoLink,

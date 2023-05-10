@@ -5,13 +5,13 @@ import { Spinner } from '../spinner/Spinner.component';
 
 import './Button.scss';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonText?: string | ReactNode;
   onClick?: () => void;
   isLoading?: boolean;
 }
 
-export const Button: FC<ButtonProps> = ({
+export const Button: FC<Props> = ({
   buttonText = 'Click me',
   onClick = () => {},
   isLoading = false,

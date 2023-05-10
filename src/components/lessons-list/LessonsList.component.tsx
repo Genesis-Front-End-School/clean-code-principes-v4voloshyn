@@ -6,12 +6,12 @@ import { LessonItem } from '../lesson-item/LessonItem.component';
 
 import './LessonsList.scss';
 
-interface LessonsListProps {
+interface Props {
   handleChangeLessonData: (videoSrc: string, imagePreviewLink: string) => void;
   activeLessonVideoLink: string;
 }
 
-export const LessonsList: FC<LessonsListProps> = ({
+export const LessonsList: FC<Props> = ({
   handleChangeLessonData,
   activeLessonVideoLink,
 }) => {
