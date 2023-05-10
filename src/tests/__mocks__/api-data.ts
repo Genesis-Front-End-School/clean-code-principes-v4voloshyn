@@ -1,4 +1,4 @@
-import { ICourse } from '../../@types/types';
+import { ICourse } from '../../shared/@types/types';
 
 export const fakeSingleCourse: Partial<ICourse> = {
   id: '3',

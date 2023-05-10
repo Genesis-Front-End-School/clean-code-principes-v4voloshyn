@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { FC } from 'react';
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
 
-import { Layout } from '../../components/common/layout/Layout.component';
+import { Layout } from '../../shared/UI/layout/Layout.component';
 
 import './Error.scss';
 
