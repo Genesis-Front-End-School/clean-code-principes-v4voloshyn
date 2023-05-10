@@ -38,11 +38,6 @@ export interface IVideoLesson {
   meta: unknown | null;
 }
 
-export type CourseItemPreview = Pick<
-  ICourse,
-  'id' | 'title' | 'previewImageLink' | 'lessonsCount' | 'rating'
-> & { meta: Pick<ICourseMeta, 'skills' | 'courseVideoPreview'> };
-
 export type VideoPlayerSrcLinks = [
   IVideoLesson['link'],
   IVideoLesson['previewImageLink']

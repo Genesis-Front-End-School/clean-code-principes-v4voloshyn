@@ -1,12 +1,11 @@
 import { FC, useState, useMemo, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import { CourseItemPreview } from '../../shared/@types/types';
-
+import { CourseItemPreview } from './@types/types';
 import { CourseCard } from './components/course-card/CourseCard.component';
 import { Pagination } from './components/pagination/Pagination.component';
 
-import './course-list.scss';
+import './CourseList.scss';
 
 export const CourseList: FC = () => {
   const courses = useLoaderData() as CourseItemPreview[];
