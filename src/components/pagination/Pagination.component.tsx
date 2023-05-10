@@ -6,13 +6,13 @@ import { FIRST_PAGE, DEFAULT_ITEMS_PER_PAGE, PAGE_RANGE } from './constants';
 
 import './Pagination.scss';
 
-interface PaginationProps {
+interface Props {
   totalPageCount: number;
   itemsPerPage: number;
   setStartOffset: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination: FC<Props> = ({
   totalPageCount,
   itemsPerPage = DEFAULT_ITEMS_PER_PAGE,
   setStartOffset,
