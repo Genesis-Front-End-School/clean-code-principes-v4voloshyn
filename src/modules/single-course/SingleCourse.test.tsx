@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import { Mock, MockedFunction, vi } from 'vitest';
 
-import { SingleCourse } from './SingleCourse';
+import { SingleCourse } from './SingleCourse.module';
 
 vi.mock('react-router-dom', () => ({
   useLoaderData: vi.fn(),
