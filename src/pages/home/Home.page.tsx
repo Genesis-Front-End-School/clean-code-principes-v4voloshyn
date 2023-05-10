@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { CourseList } from '../../components/course-list/CourseList.component';
+import { CourseList } from '../../modules/course-list/CourseList';
 
 export const Home: FC = () => {
   return <CourseList />;
