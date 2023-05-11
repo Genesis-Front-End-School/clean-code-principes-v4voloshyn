@@ -2,9 +2,9 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import { CourseItemPreview } from '../../../../shared/@types/types';
 import { Button } from '../../../../shared/UI/button/Button.component';
 import { VideoPlayer } from '../../../../shared/components/video-player/VideoPlayer.component';
+import { CourseItemPreview } from '../../@types/types';
 import { SkillsList } from '../skills-list/SkillsList.component';
 
 import './CourseCard.scss';
