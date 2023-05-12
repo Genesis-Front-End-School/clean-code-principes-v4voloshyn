@@ -4,9 +4,10 @@
   display: flex;
   margin-top: 10px;
   gap: 8px;
+  transition: background-color, 0.15s ease-in-out;
 
   &:hover {
-    background-color: var(--color-bg-lightdark);
+    background-color: var(--color-bg-hover);
   }
 
   &_locked {

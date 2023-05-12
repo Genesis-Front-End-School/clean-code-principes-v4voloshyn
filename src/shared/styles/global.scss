@@ -1,16 +1,49 @@
 :root {
-  --font-family-primary: 'Nunito', sans-serif;
-  --color-primary: #41c1f4;
-  --color-primary-light: rgba(65, 193, 244, 0.201);
-  --color-text-primary: rgba(0, 0, 0, 0.87);
-  --color-bg-main: #f8f8f8;
-  --color-bg-active: #ffe302;
-  --color-bg-hover: #ffe302;
-  --color-bg-disabled: #b4b4b4;
-  --color-bg-lightdark: #eee;
+  --ff-nunito: 'Nunito', sans-serif;
   --h1-size: 32px;
   --h4-size: 16px;
+  --c-white: #ffffff;
+  --c-whitesmoke: #f8f8f8;
+  --c-black: #000000;
+  --c-black-80: rgba(0, 0, 0, 0.8);
+  --c-black-25: rgba(0, 0, 0, 0.25);
+  --c-lightgray: #eeeeee;
+  --c-darkgray: #b4b4b4;
+  --c-grayblue: #a4b0be;
+  --c-skyblue: #41c1f4;
+  --c-blue: #003892;
+  --c-darkblue: rgb(26, 24, 62);
+  --c-darkblue-20: rgba(65, 193, 244, 0.2);
+  --c-dark-wave: #202c37;
+  --c-yellow: #ffe302;
+  --c-red: #ff0000;
+
+  /* ================================= */
+  --font-family-primary: var(--ff-nunito);
   --font-size-primary: 16px;
+  --color-primary: var(--c-skyblue);
+  --color-secondary: var(--c-skyblue);
+  --color-primary-light: var(--c-darkblue-20);
+  --color-text-primary: var(--c-black-80);
+  --color-text-accent: var(--c-darkblue-20);
+  --color-bg-main: var(--c-whitesmoke);
+  --colors-bg-base: var(--c-white);
+  --color-bg-active: var(--c-yellow);
+  --color-bg-focus: var(--c-red);
+  --color-bg-hover: var(--c-darkblue-20);
+  --color-bg-disabled: var(--c-darkgray);
+  --color-bg-lightdark: var(--c-lightgray);
+  --shadow: 2px 7px 32px -16px var(--c-black-80);
+  --shadow-focus: 0 0 3px var(--color-bg-focus);
+}
+
+body.dark {
+  --color-text-primary: var(--c-white);
+  --color-text-accent: var(--c-whitesmoke);
+  --color-bg-main: var(--c-dark-wave);
+  --color-bg-lightdark: var(--c-dark-wave);
+  --color-ui-base: #2b3945;
+  --shadow: 0 0 8px rgba(245, 245, 245, 0.2);
 }
 
 body {
@@ -22,6 +55,8 @@ body {
   font-weight: 400;
   background-color: var(--color-bg-main);
   font-size: var(--font-size-primary);
+  color: var(--color-text-primary);
+  transition: background 0.3s ease-in-out;
 }
 
 #root {

@@ -4,108 +4,119 @@
   background-color: transparent;
   display: flex;
   justify-content: center;
-}
 
-.card:hover {
-  & > .card__image img {
-    transform: scale(1.08);
-    z-index: 9;
+  &:hover {
+    & > .card__image img {
+      transform: scale(1.08);
+      z-index: 9;
+    }
+  }
+
+  &__body {
+    width: 370px;
+    background-color: var(--color-ui-base);
+    border-radius: 15px;
+    margin-top: 30px;
+    padding-bottom: 5px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__image {
+    position: absolute;
+    margin-bottom: auto;
+    overflow: hidden;
+    width: 300px;
+    height: 320px;
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    background-color: var(--color-ui-base);
+
+    & img {
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: 328px;
+    min-height: 140px;
+    margin-top: 302px;
+    font-weight: 400;
+    font-size: 18px;
+    color: inherit;
+  }
+
+  &__title {
+    width: 100%;
+    height: 50px;
+    margin: 3px auto;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    & h4 {
+      margin: 3px auto;
+      font-weight: 700;
+      font-size: 18px;
+      color: inherit;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+
+    &_bottom {
+      position: relative;
+      margin-top: 10px;
+      padding: 0 5px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 1px;
+        border-radius: 50px;
+        background: var(--color-bg-lightdark);
+      }
+    }
+  }
+
+  &__lessons,
+  &__rating {
+    flex: 1 1 50%;
+    padding: 5px 15px;
+  }
+  &__rating {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 }
 
-.card .card__body {
-  width: 370px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  margin-top: 30px;
-  padding-bottom: 5px;
-  box-shadow: 2px 7px 32px -16px rgba(0, 0, 0, 0.75);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card .card__image {
-  position: absolute;
-  margin-bottom: auto;
-  overflow: hidden;
-  width: 300px;
-  height: 320px;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.card .card__image img {
-  border-radius: 15px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.card .card__body .card__description {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  width: 328px;
-  min-height: 140px;
-  margin-top: 302px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #1a183e;
-}
-
-.card .card__body .card__description .card__title {
-  width: 100%;
-  height: 50px;
-  margin: 3px auto;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card .card__body .card__description .card__title h4 {
-  margin: 3px auto;
-  font-weight: 700;
-  font-size: 18px;
-  color: #1a183e;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.card .card__footer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.card__footer_bottom {
-  margin-top: 10px;
-  padding: 0 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  border-top: 1px solid #84848498;
-}
-
-.card__lessons,
-.card__rating {
-  flex: 1 1 50%;
-  padding: 5px 15px;
-}
-
-.card__rating {
-  text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
 .star {
-  color: #ffe302;
+  color: var(--c-yellow);
 }
