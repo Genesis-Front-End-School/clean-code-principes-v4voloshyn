@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../../../shared/UI/button/Button.component';
+import { Spinner } from '../../../../shared/UI/spinner/Spinner.component';
 import { VideoPlayer } from '../../../../shared/components/video-player/VideoPlayer.component';
 import { CourseItemPreview } from '../../@types/types';
 import { SkillsList } from '../skills-list/SkillsList.component';
@@ -87,9 +88,10 @@ export const CourseCard: FC<Props> = ({ courseData }) => {
         </div>
         <div className="card__footer">
           <Button
-            buttonText="Watch lessons"
-            isLoading={isCoursePageLoading}
+            buttonText={!isCoursePageLoading && 'Watch lessons'}
             onClick={() => goToCoursePage(id)}
+            endIcon={isCoursePageLoading && <Spinner />}
+            disabled={isCoursePageLoading}
           />
           <div className="card__footer_bottom">
             <div className="card__lessons">Lessons: {lessonsCount}</div>

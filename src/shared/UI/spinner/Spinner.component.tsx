@@ -17,7 +17,7 @@ export const Spinner: FC<SpinnerProps> = ({ variant = 'small' }) => {
 
   return (
     <div className="spinner-wrapper">
-      <span>Loading...</span>
+      <span className="spinner-text">Loading...</span>
       <div
         className="spinner spinner-small"
         role="status"
