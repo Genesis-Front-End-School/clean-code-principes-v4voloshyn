@@ -12,7 +12,7 @@ export const Switch: FC<SwitchProps> = ({ theme, toggleTheme }) => {
       <label id="switch" htmlFor="slider" className="switch">
         <input
           type="checkbox"
-          onClick={toggleTheme}
+          onChange={toggleTheme}
           id="slider"
           checked={theme === 'dark'}
         />

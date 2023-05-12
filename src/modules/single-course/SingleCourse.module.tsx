@@ -82,7 +82,7 @@ export const SingleCourse: FC = () => {
       <div className="course__lessons">
         <div className="course__lessons-info">
           <div className="course__lessons-progress">
-            Lessons 0 / {lessons.length}
+            Progress 0 / {lessons.length}
           </div>
           <div className="course__lessons-timetotal">
             {totalDurationInMin}min total
