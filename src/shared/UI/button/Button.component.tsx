@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
+import { Spinner } from '../spinner/Spinner.component';
 import './Button.scss';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
