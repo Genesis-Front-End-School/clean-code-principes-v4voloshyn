@@ -1,0 +1,12 @@
+.chat-window {
+  height: 400px;
+  width: 250px;
+  display: inline-block;
+  background-color: var(--c-darkgray);
+  overflow-y: auto;
+}
+
+.chat-list {
+  height: 100%;
+  width: 100%;
+}
