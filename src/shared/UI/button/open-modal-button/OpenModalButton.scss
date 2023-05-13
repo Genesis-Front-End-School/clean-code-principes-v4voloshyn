@@ -1,0 +1,16 @@
+.question-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: var(--color-primary);
+  font-family: var(--font-family-primary);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 50%;
+}
