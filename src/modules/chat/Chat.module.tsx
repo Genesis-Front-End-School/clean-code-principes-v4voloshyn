@@ -25,18 +25,25 @@ type Message = {
   msgID: string;
   author: string;
   originalText: string;
+  timestamp: Date;
+  online?: number;
 };
 
 export const Chat: FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState('');
+  const [usersOnline, setUsersOnline] = useState(0);
 
   const refId = useRef(uuid());
-  const userID = refId.current;
+  const userSessionID = refId.current;
 
   useEffect(() => {
     socket.addEventListener('message', (e) => {
       const incomeMessage: Message = JSON.parse(e.data);
+      if (incomeMessage.online) {
+        setUsersOnline(incomeMessage.online || 0);
+      }
+      console.log('income', incomeMessage);
 
       setMessages((prev) => [...prev, incomeMessage]);
     });
@@ -46,14 +53,16 @@ export const Chat: FC = () => {
     e.preventDefault();
 
     const newMsg = {
-      authorID: userID,
-      msgID: uuid(),
+      authorID: userSessionID,
       author: 'Anonymous',
       originalText: text,
     };
 
-    socket?.send(JSON.stringify(newMsg));
-    setMessages((prev) => [...prev, newMsg]);
+    try {
+      socket?.send(JSON.stringify(newMsg));
+    } catch (err) {
+      console.log('WARN', err);
+    }
     setText('');
   };
 
@@ -62,35 +71,47 @@ export const Chat: FC = () => {
   };
 
   const isSender = (user: string): boolean => {
-    return user === userID;
+    return user === userSessionID;
   };
 
-  const cls = (prop: string) =>
-    clsx({
-      sender: isSender(prop),
-      receiver: !isSender(prop),
+  const listItemStyle = (prop: string) =>
+    clsx('message', {
+      message__sender: isSender(prop),
+      message__receiver: !isSender(prop),
     });
 
   return (
     <div className="chat chat-wrapper">
-      <form onSubmit={sendMessage}>
-        <div className="chat-window">
+      {usersOnline}
+      <div className="chat-window">
+        {messages.length === 0 ? (
+          <div className="no-message">
+            Please, feel free to ask us anything about courses
+          </div>
+        ) : (
           <ul className="chat-list">
-            {messages.map((m) => (
-              <li key={m.msgID} className={cls(m.authorID)}>
-                {!isSender(m.authorID) && m.author} {m.originalText}
+            {messages.map((msg) => (
+              <li className={listItemStyle(msg.authorID)} key={msg.msgID}>
+                <span className="message__author">{msg.author}</span>
+                <p className="message__content">{msg.originalText}</p>
+                <span className="message__time">
+                  {new Date(msg.timestamp).toLocaleTimeString().slice(0, -3)}
+                </span>
               </li>
             ))}
           </ul>
-        </div>
-        <div>
+        )}
+      </div>
+      <form onSubmit={sendMessage}>
+        <div className="chat__controls">
           <input
+            className="chat__input"
             type="text"
             placeholder="Enter your question"
             value={text}
             onChange={handleChatTextInput}
           />
-          <button type="submit" className="send">
+          <button type="submit" className="chat__send">
             Send
           </button>
         </div>

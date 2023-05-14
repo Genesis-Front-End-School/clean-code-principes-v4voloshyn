@@ -13,6 +13,7 @@
   --c-grayblue: #a4b0be;
   --c-skyblue: #41c1f4;
   --c-blue: #003892;
+  --c-lightgreen: #90ee90;
   --c-darkblue: rgb(26, 24, 62);
   --c-darkblue-20: rgba(65, 193, 244, 0.2);
   --c-dark-wave: #202c37;
@@ -35,12 +36,14 @@
   --color-bg-disabled: var(--c-darkgray);
   --color-bg-lightdark: var(--c-lightgray);
   --shadow: 2px 7px 32px -16px var(--c-black-80);
+  --shadow-tiny: 2px 7px 16px -16px var(--c-black-80);
   --shadow-focus: 0 0 3px var(--color-bg-focus);
 }
 
 body.dark {
   --color-text-primary: var(--c-white);
   --color-text-accent: var(--c-whitesmoke);
+  --color-text-dark: var(--c-black);
   --color-bg-main: var(--c-dark-wave);
   --color-bg-lightdark: var(--c-dark-wave);
   --color-ui-base: #2b3945;
