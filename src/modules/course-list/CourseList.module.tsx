@@ -42,9 +42,9 @@ export const CourseList: FC = () => {
         setStartOffset={setStartOffset}
         itemsPerPage={COURSES_PER_PAGE_COUNT}
       />
-      {!isModalActive && <OpenModalButton openModal={setIsModalActive} />};
+      {!isModalActive && <OpenModalButton openModal={setIsModalActive} />}
       <Modal active={isModalActive} setActive={setIsModalActive}>
-        <Chat />
+        <Chat isShow={isModalActive} />
       </Modal>
     </div>
   );

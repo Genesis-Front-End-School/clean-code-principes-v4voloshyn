@@ -1,4 +1,4 @@
-.chat-window {
+.chat__window {
   height: 350px;
   width: 100%;
   background-color: transparent;
@@ -7,7 +7,29 @@
   flex-direction: column;
 }
 
-.chat-list {
+.chat__status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.status__marker {
+  display: inline-block;
+  margin-left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status__marker_online {
+  background-color: green;
+}
+
+.status__marker_offline {
+  background-color: red;
+}
+
+.chat__list {
   display: flex;
   flex-direction: column;
   height: 100%;
