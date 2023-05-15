@@ -7,19 +7,6 @@ import './Chat.scss';
 const PREFIX = window.location.protocol === 'https:' ? 'wss' : 'ws';
 const HOST = window.location.hostname;
 
-const socket = new WebSocket(`${PREFIX}://${HOST}:8080`);
-socket.onopen = () => {
-  console.log(`You successfully connected!`);
-};
-
-socket.onerror = () => {
-  console.log(`There something wrong with WebSocket connection...`);
-};
-
-socket.onclose = () => {
-  console.log('WS was closed');
-};
-
 type Message = {
   authorID: string;
   msgID: string;
@@ -29,25 +16,47 @@ type Message = {
   online?: number;
 };
 
-export const Chat: FC = () => {
+export const Chat: FC<{ isShow: boolean }> = ({ isShow }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState('');
   const [usersOnline, setUsersOnline] = useState(0);
+  const [connected, setConnected] = useState(false);
 
+  const socketRef = useRef<WebSocket>(
+    new WebSocket(`${PREFIX}://${HOST}:8080`)
+  );
+
+  const socket = socketRef.current;
   const refId = useRef(uuid());
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const userSessionID = refId.current;
 
   useEffect(() => {
-    socket.addEventListener('message', (e) => {
+    socket.onopen = () => {
+      console.log(`You successfully connected!`);
+      setConnected(true);
+    };
+
+    socket.onmessage = (e) => {
       const incomeMessage: Message = JSON.parse(e.data);
       if (incomeMessage.online) {
-        setUsersOnline(incomeMessage.online || 0);
+        setUsersOnline(incomeMessage.online);
       }
       console.log('income', incomeMessage);
 
       setMessages((prev) => [...prev, incomeMessage]);
-    });
-  }, []);
+    };
+
+    socket.onclose = () => {
+      console.log('WS was closed');
+      setConnected(false);
+    };
+
+    socket.onerror = () => {
+      console.log(`There something wrong with WebSocket connection...`);
+      setConnected(false);
+    };
+  }, [socket]);
 
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,11 +67,8 @@ export const Chat: FC = () => {
       originalText: text,
     };
 
-    try {
-      socket?.send(JSON.stringify(newMsg));
-    } catch (err) {
-      console.log('WARN', err);
-    }
+    socket?.send(JSON.stringify(newMsg));
+
     setText('');
   };
 
@@ -80,16 +86,34 @@ export const Chat: FC = () => {
       message__receiver: !isSender(prop),
     });
 
+  const statusMarkerStyle = clsx('status__marker', {
+    status__marker_online: connected,
+    status__marker_offline: !connected,
+  });
+
+  const status = connected ? 'connected' : 'offline';
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isShow]);
+
   return (
     <div className="chat chat-wrapper">
+      <span className="chat__status status">
+        <span className={statusMarkerStyle} /> You are {status}
+      </span>
       {usersOnline}
-      <div className="chat-window">
+      <div className="chat__window">
         {messages.length === 0 ? (
           <div className="no-message">
             Please, feel free to ask us anything about courses
+            <br />
+            Your connected status: {status}
           </div>
         ) : (
-          <ul className="chat-list">
+          <ul className="chat__list">
             {messages.map((msg) => (
               <li className={listItemStyle(msg.authorID)} key={msg.msgID}>
                 <span className="message__author">{msg.author}</span>
@@ -110,6 +134,7 @@ export const Chat: FC = () => {
             placeholder="Enter your question"
             value={text}
             onChange={handleChatTextInput}
+            ref={inputRef}
           />
           <button type="submit" className="chat__send">
             Send
