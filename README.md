@@ -42,6 +42,7 @@
 - ✅ Mobile adaptive
 - ⬜ \*Video loading animation + / -
 - ✅ Test Coverage
+- ⬜ Fake chat on WS
 
 <hr/>
 

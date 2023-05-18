@@ -28,9 +28,9 @@ export const CourseList: FC = () => {
     <div className="course-list">
       <h1 className="course-list__title">Course List</h1>
       <div className="courses">
-        {paginatedCourses.map((course) => {
-          return <CourseCard key={course.id} courseData={course} />;
-        })}
+        {paginatedCourses.map((course) => (
+          <CourseCard key={course.id} courseData={course} />
+        ))}
       </div>
       <Pagination
         totalPageCount={totalPageCount}

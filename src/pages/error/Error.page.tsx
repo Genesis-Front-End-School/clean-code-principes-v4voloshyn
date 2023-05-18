@@ -19,11 +19,9 @@ export const ErrorPage: FC = () => {
             <i>
               {error.status} {error.statusText} - {error.error?.message}
             </i>
-            <p>
-              <Link to="/" className="error__link">
-                Go to main
-              </Link>
-            </p>
+            <Link to="/" className="error__link">
+              Go to main
+            </Link>
           </p>
         </div>
       </Layout>
