@@ -1,0 +1,26 @@
+.error {
+  text-align: center;
+}
+
+.error__link {
+  display: block;
+  width: 200px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 10px 15px;
+  background-color: var(--color-primary);
+  font-size: var(--font-family-primary);
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in;
+
+  &_text {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: var(--color-bg-hover);
+  }
+}

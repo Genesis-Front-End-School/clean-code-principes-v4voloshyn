@@ -1,0 +1,46 @@
+.skill {
+  color: var(--color-text-primary);
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  &__wrapper {
+    margin-top: 10px;
+    padding: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(155, 155, 155, 0.075);
+    border-radius: 50px;
+  }
+  &__list {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-lightdark);
+    min-width: fit-content;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 8px;
+  }
+  &__marker {
+    background-color: var(--c-grayblue);
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    margin-left: 3px;
+    margin-right: 8px;
+  }
+  &__text {
+    font-size: 13px;
+  }
+}

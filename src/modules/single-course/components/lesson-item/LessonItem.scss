@@ -1,0 +1,55 @@
+.lesson__item {
+  width: 100%;
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  gap: 8px;
+  transition: background-color, 0.15s ease-in-out;
+
+  &:hover {
+    background-color: var(--color-bg-hover);
+  }
+
+  &_locked {
+    pointer-events: none;
+    cursor: default;
+    background-color: var(--color-bg-lightdark);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      font-size: 12px;
+      right: 5px;
+    }
+  }
+
+  &_active {
+    background-color: var(--color-primary-light);
+  }
+}
+
+.lesson__viewed {
+  align-self: flex-start;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.lesson__info {
+  all: unset;
+  width: 100%;
+  display: flex;
+  row-gap: 2px;
+  flex-direction: column;
+  cursor: pointer;
+  padding-left: 5px;
+
+  &:focus {
+    border: 1px solid black;
+  }
+}
+
+.lesson__description {
+  font-size: 12px;
+  margin-top: 4px;
+}
