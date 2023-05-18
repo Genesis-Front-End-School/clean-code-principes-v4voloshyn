@@ -76,7 +76,11 @@ export const CourseCard: FC<Props> = ({ courseData }) => {
             onReady={() => {}}
           />
         ) : (
-          <img src={`${previewImageLink}/cover.webp`} alt={title} />
+          <img
+            src={`${previewImageLink}/cover.webp`}
+            alt={title}
+            loading="lazy"
+          />
         )}
       </div>
       <div className="card__body">
