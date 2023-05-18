@@ -13,61 +13,107 @@ type Message = {
   author: string;
   originalText: string;
   timestamp: Date;
-  online?: number;
+  online: number;
+  event: string;
 };
 
 export const Chat: FC<{ isShow: boolean }> = ({ isShow }) => {
+  const [username, setUsername] = useState('');
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState('');
   const [usersOnline, setUsersOnline] = useState(0);
   const [connected, setConnected] = useState(false);
 
-  const socketRef = useRef<WebSocket>(
-    new WebSocket(`${PREFIX}://${HOST}:8080`)
-  );
-
-  const socket = socketRef.current;
   const refId = useRef(uuid());
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const userSessionID = refId.current;
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const socket = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    socket.onopen = () => {
+    return () => {
+      if (socket.current) {
+        socket.current.close();
+      }
+    };
+  }, []);
+
+  function connectWS() {
+    socket.current = new WebSocket(`${PREFIX}://${HOST}:8080`);
+
+    socket.current.onopen = () => {
       console.log(`You successfully connected!`);
+
+      const message = {
+        event: 'connection',
+        username: text,
+        sessionID: userSessionID,
+      };
+
+      if (socket.current) {
+        socket.current.send(JSON.stringify(message));
+      }
       setConnected(true);
+      setText('');
     };
 
-    socket.onmessage = (e) => {
+    socket.current.onmessage = (e) => {
       const incomeMessage: Message = JSON.parse(e.data);
-      if (incomeMessage.online) {
+
+      if (incomeMessage.event === 'connection') {
         setUsersOnline(incomeMessage.online);
       }
-      console.log('income', incomeMessage);
+      if (incomeMessage.event === 'leave') {
+        setUsersOnline(incomeMessage.online);
+      }
 
-      setMessages((prev) => [...prev, incomeMessage]);
+      if (incomeMessage.event === 'text') {
+        setMessages((prev) => [...prev, incomeMessage]);
+      }
     };
 
-    socket.onclose = () => {
+    socket.current.onclose = () => {
       console.log('WS was closed');
       setConnected(false);
+
+      const message = {
+        event: 'leave',
+        username,
+        sessionID: userSessionID,
+      };
+
+      if (socket.current) {
+        socket.current.send(JSON.stringify(message));
+        socket.current.close();
+      }
     };
 
-    socket.onerror = () => {
+    socket.current.onerror = () => {
       console.log(`There something wrong with WebSocket connection...`);
       setConnected(false);
     };
-  }, [socket]);
+  }
+
+  const handleConnect = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setUsername(text);
+    connectWS();
+  };
 
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!text) return;
 
     const newMsg = {
+      event: 'text',
       authorID: userSessionID,
-      author: 'Anonymous',
       originalText: text,
     };
 
-    socket?.send(JSON.stringify(newMsg));
+    if (socket.current) {
+      socket?.current.send(JSON.stringify(newMsg));
+    }
 
     setText('');
   };
@@ -104,13 +150,10 @@ export const Chat: FC<{ isShow: boolean }> = ({ isShow }) => {
       <span className="chat__status status">
         <span className={statusMarkerStyle} /> You are {status}
       </span>
-      {usersOnline}
       <div className="chat__window">
         {messages.length === 0 ? (
           <div className="no-message">
             Please, feel free to ask us anything about courses
-            <br />
-            Your connected status: {status}
           </div>
         ) : (
           <ul className="chat__list">
@@ -126,9 +169,10 @@ export const Chat: FC<{ isShow: boolean }> = ({ isShow }) => {
           </ul>
         )}
       </div>
-      <form onSubmit={sendMessage}>
+      <form onSubmit={connected ? sendMessage : handleConnect}>
         <div className="chat__controls">
           <input
+            name="text"
             className="chat__input"
             type="text"
             placeholder="Enter your question"
@@ -136,6 +180,7 @@ export const Chat: FC<{ isShow: boolean }> = ({ isShow }) => {
             onChange={handleChatTextInput}
             ref={inputRef}
           />
+
           <button type="submit" className="chat__send">
             Send
           </button>

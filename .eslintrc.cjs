@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    '@typescript-eslint/no-use-before-define': 0,
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
     'import/prefer-default-export': 0,

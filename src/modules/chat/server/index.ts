@@ -6,36 +6,69 @@ const WS_PORT = 8080;
 const wss = new WebSocketServer({ port: WS_PORT });
 
 const users: WebSocket.WebSocket[] = [];
-const usersOnline = { online: 0 };
 
 wss.on('connection', function connection(ws) {
-  ws.on('error', console.error);
-
   users.push(ws);
-  usersOnline.online += 1;
+  let username: string;
 
-  wss.clients.forEach((client) => client.send(JSON.stringify(usersOnline)));
-
-  ws.on('message', function message(data, isBinary) {
+  ws.on('message', function message(data) {
     const msgID = uuid();
     const timestamp = Date.now();
 
     const parsedData = JSON.parse(data.toString());
-    console.log(parsedData);
-    const storageData = { ...parsedData, msgID, timestamp };
 
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(storageData), {
-          binary: isBinary,
-        });
+    switch (parsedData.event) {
+      case 'text': {
+        const storageData = {
+          ...parsedData,
+          author: username,
+          msgID,
+          timestamp,
+          online: wss.listenerCount('message'),
+        };
+
+        broadcastMessage(storageData);
+        break;
       }
-    });
+
+      case 'connection': {
+        username = parsedData.username;
+
+        const storageData = {
+          ...parsedData,
+          online: wss.listenerCount('message'),
+        };
+
+        broadcastMessage(storageData);
+        break;
+      }
+
+      case 'leave': {
+        const storageData = {
+          ...parsedData,
+          online: wss.listenerCount('message'),
+        };
+
+        broadcastMessage(storageData);
+        ws.close();
+        break;
+      }
+
+      default:
+        break;
+    }
   });
 
-  ws.on('close', function () {
-    users.splice(users.indexOf(ws));
-    usersOnline.online -= 1;
-    users.forEach((user) => user.send(JSON.stringify(usersOnline)));
+  ws.on('close', function closeConnection() {
+    ws.close();
+    users.splice(users.indexOf(ws), 1);
   });
 });
+
+function broadcastMessage(parsedMessage: any) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(parsedMessage));
+    }
+  });
+}
