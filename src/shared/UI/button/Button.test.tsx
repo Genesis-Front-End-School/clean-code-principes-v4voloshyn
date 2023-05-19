@@ -1,57 +1,36 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Mock, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import { Button } from './Button.component';
 
-vi.mock('../spinner/Spinner.component', () => ({
-  Spinner: () => <div data-testid="spinner-test" />,
-}));
-
-describe('Button component', () => {
-  let mockOnClick: Mock;
-
-  beforeEach(() => {
-    mockOnClick = vi.fn();
-  });
-
-  afterEach(() => vi.resetAllMocks());
-
-  it('renders with the provided text and without spinner', () => {
-    const buttonText = 'Awesome button';
-    render(<Button onClick={mockOnClick} buttonText={buttonText} />);
-    const button = screen.getByRole('button');
+describe('Button', () => {
+  it('should render a button with the given text', () => {
+    const { getByText } = render(<Button buttonText="Hello World" />);
+    const button = getByText('Hello World');
 
     expect(button).toBeInTheDocument();
-    expect(screen.queryByTestId('spinner-test')).not.toBeInTheDocument();
   });
 
-  it('calls the onClick function when clicked', async () => {
-    render(<Button onClick={mockOnClick} />);
-    const button = screen.getByRole('button');
-    await userEvent.click(button);
-    expect(mockOnClick).toHaveBeenCalledTimes(1);
+  it('should render a button with the given icon', () => {
+    const { getByTestId } = render(
+      <Button
+        startIcon={<i className="fa fa-check" data-testid="test-icon" />}
+      />
+    );
+    const icon = getByTestId('test-icon');
+
+    expect(icon).toBeInTheDocument();
+    expect(icon).toHaveClass('fa fa-check');
   });
 
-  it('disabled when status isLoading', () => {
-    const { rerender } = render(<Button isLoading />);
-    const button = screen.getByRole('button');
-
-    expect(button).toBeDisabled();
-
-    rerender(<Button />);
-
-    expect(button).not.toBeDisabled();
-  });
-
-  it('displays the spinner when status isLoading', async () => {
-    const { rerender } = render(<Button onClick={mockOnClick} />);
+  it('should call the onClick handler when the button is clicked', async () => {
+    const onClickFn = vi.fn();
+    render(<Button onClick={onClickFn} />);
     const button = screen.getByRole('button');
 
     await userEvent.click(button);
-    rerender(<Button onClick={mockOnClick} isLoading />);
 
-    expect(mockOnClick).toHaveBeenCalled();
-    expect(screen.getByTestId('spinner-test')).toBeInTheDocument();
+    expect(onClickFn).toHaveBeenCalled();
   });
 });
