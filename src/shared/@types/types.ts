@@ -14,7 +14,7 @@ export interface ICourse {
   id: string;
   title: string;
   tags: string[];
-  launchDate: Date;
+  launchDate: string;
   status: string;
   description: string;
   duration: number;
