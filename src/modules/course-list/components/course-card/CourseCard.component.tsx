@@ -1,10 +1,8 @@
-import { Button } from 'gfs-components-lib';
+import { Button, Spinner, VideoPlayer } from 'gfs-components-lib';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import { Spinner } from '../../../../shared/UI/spinner/Spinner.component';
-import { VideoPlayer } from '../../../../shared/components/video-player/VideoPlayer.component';
 import { CourseItemPreview } from '../../@types/types';
 import { SkillsList } from '../skills-list/SkillsList.component';
 

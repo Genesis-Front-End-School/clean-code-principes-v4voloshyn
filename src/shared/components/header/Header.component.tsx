@@ -1,10 +1,9 @@
+import { Switch } from 'gfs-components-lib';
 import { FC } from 'react';
 import { FaUserGraduate } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import { useThemeContext } from '../../hooks/useThemeContext';
-
-import { Switch } from './theme-switcher/Switch.component';
 
 import './Header.scss';
 
