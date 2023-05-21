@@ -38,23 +38,3 @@ export const router = createBrowserRouter(
     </Route>
   )
 );
-
-//   {
-//     path: '/',
-//     element: <App />,
-//     errorElement: ,
-//     children: [
-//       {
-//         index: true,
-//         element: <Home />,
-//         loader: () => getAllCourses(),
-//       },
-//       {
-//         path: 'course/:courseId',
-//         lazy: () => import('../../pages/course/Course.page'),
-//         loader: ({ params }) => getCourseById(String(params.courseId)),
-//         errorElement: <ErrorPage />,
-//       },
-//     ],
-//   },
-// ]);
