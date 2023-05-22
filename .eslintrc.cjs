@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:css-import-order/recommended',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
@@ -18,7 +19,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'css-import-order'],
   rules: {
     '@typescript-eslint/no-use-before-define': 0,
     'react/react-in-jsx-scope': 0,
@@ -40,16 +41,22 @@ module.exports = {
           'sibling',
           'index',
         ],
-        'newlines-between': 'always',
         pathGroups: [
           {
             pattern: '@/**',
             group: 'internal',
           },
+          {
+            pattern: '{.,..}/**/*.scss',
+            group: 'object',
+            position: 'after',
+          },
         ],
         alphabetize: {
           order: 'asc',
         },
+        'newlines-between': 'always',
+        warnOnUnassignedImports: true,
       },
     ],
   },

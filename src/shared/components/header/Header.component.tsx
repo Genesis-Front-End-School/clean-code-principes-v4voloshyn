@@ -10,7 +10,7 @@ import './Header.scss';
 
 export const Header: FC = () => {
   const { theme, toggleTheme } = useThemeContext();
-  
+
   return (
     <div className="header">
       <Link to="/">
