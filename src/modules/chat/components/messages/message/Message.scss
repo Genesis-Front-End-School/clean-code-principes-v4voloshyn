@@ -1,0 +1,39 @@
+.message {
+  border-radius: 5px;
+  padding: 5px;
+  padding-bottom: 0;
+  margin-right: 10px;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+  border: 1px solid var(--color-bg-lightdark);
+  box-shadow: var(--shadow-tiny);
+}
+
+.message__author {
+  margin: 3px;
+  font-weight: 700;
+  padding: 0;
+  font-size: 13px;
+  line-height: 8px;
+}
+
+.message__content {
+  padding: 0;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.message__receiver {
+  background-color: var(--c-darkblue-20);
+}
+
+.message__sender {
+  background-color: var(--c-lightgreen);
+  color: var(--color-text-dark);
+}
+
+.message__time {
+  display: block;
+  font-size: 10px;
+  text-align: right;
+}
