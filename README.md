@@ -1,6 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/_2xjYeZK)
+# GFS App (Online courses)
 
-## HW-1 Clean code principe's
+## 🚀 Current version of the app you can see here: [Live App on Vercel](https://gfs-app.vercel.app/)
+
+<br/>
+
+##  🔴Warn👇👇👇
+
+### For fetching data you need to download this extension: [Home page](https://mybrowseraddon.com/access-control-allow-origin.html) to allow CORS access to the API of the App. This extension available for [Google Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) | [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin/) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/bhjepjpgngghppolkjdhckmnfphffdag)
+
+<br/>
+
+> 💡**NOTE**: The current version of the [Live App](https://gfs-app.vercel.app/) does not always match the main (production) branch, as it is synchronized with some functionality lagging (or leading) with the other repository. [Live App](https://gfs-app.vercel.app/) may contain some experimental features that have not been fully or well tested or may be under continuous development, as for example, the Chat module on WebSockets.
+
+<br/>
 
 #### 📝 **TODO**:
 
@@ -42,7 +54,7 @@
 - ✅ Mobile adaptive
 - ⬜ \*Video loading animation + / -
 - ✅ Test Coverage
-- ⬜ Fake chat on WS
+- ✅ Fake chat on WS
 
 <hr/>
 
