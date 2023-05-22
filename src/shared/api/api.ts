@@ -27,6 +27,10 @@ export const getRequest = async <T>(
         throw new Error(`${requestError.message}`);
       }
 
+      if (!requestError.response.data) {
+        throw new Error(`${requestError.message}`);
+      }
+
       const axiosError = requestError as AxiosError<CustomErrorResponse>;
       const errorObj = {
         statusCode: axiosError.response?.data.statusCode,
