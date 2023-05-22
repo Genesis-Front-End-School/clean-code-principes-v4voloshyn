@@ -10,7 +10,9 @@ export const getTotalLessonsDurationInMin = (
   return Math.round(totalDurationInMin);
 };
 
-export const formatLessonDurationInMin = (durationInSeconds: number) => {
+export const formatLessonDurationInMin = (
+  durationInSeconds: number
+): number => {
   return Math.round(durationInSeconds / 60);
 };
 
