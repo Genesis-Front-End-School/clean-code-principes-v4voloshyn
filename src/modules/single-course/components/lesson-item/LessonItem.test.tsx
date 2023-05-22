@@ -9,9 +9,10 @@ global.scrollTo = vi.fn() as Mock;
 
 vi.mock('.././../utils/utils.ts', async () => {
   const actual: object = await vi.importActual('.././../utils/utils.ts');
+  const LESSON_DURATION_IN_MIN = 3;
   return {
     ...actual,
-    formatLessonDurationInMin: () => 3,
+    formatLessonDurationInMin: () => LESSON_DURATION_IN_MIN,
   };
 });
 

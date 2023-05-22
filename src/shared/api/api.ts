@@ -27,7 +27,7 @@ export const getRequest = async <T>(
         throw new Error(`${requestError.message}`);
       }
 
-      if(!requestError.response.data){
+      if (!requestError.response.data) {
         throw new Error(`${requestError.message}`);
       }
 
