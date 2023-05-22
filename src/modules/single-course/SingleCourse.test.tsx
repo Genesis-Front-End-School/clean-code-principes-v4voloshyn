@@ -51,21 +51,26 @@ describe('Single course page', () => {
   it('renders a spinner when the page is loading', () => {
     (useNavigationMock as Mock).mockReturnValue({ state: 'loading' });
     const { getByTestId } = render(<SingleCourse />);
-    expect(getByTestId('spinner-test')).toBeInTheDocument();
-    (useNavigationMock as Mock).mockReturnValue({ state: 'idle' });
+    const spinner = getByTestId('spinner-test');
+
+    expect(spinner).toBeInTheDocument();
   });
 
   it('renders the course data when it is loaded', () => {
     render(<SingleCourse />);
 
-    expect(screen.getByText(fakeCourse.title)).toBeInTheDocument();
-    expect(
-      screen.getByText(`Slug: ${fakeCourse.meta.slug}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText(fakeCourse.description)).toBeInTheDocument();
-    expect(
-      screen.getByText(`Progress 0 / ${fakeCourse.lessons.length}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText(`5min total`)).toBeInTheDocument();
+    const courseTitle = screen.getByText(fakeCourse.title);
+    const courseSlug = screen.getByText(`Slug: ${fakeCourse.meta.slug}`);
+    const courseDescription = screen.getByText(fakeCourse.description);
+    const progressField = screen.getByText(
+      `Progress 0 / ${fakeCourse.lessons.length}`
+    );
+    const courseDuration = screen.getByText(`5min total`);
+
+    expect(courseTitle).toBeInTheDocument();
+    expect(courseSlug).toBeInTheDocument();
+    expect(courseDescription).toBeInTheDocument();
+    expect(progressField).toBeInTheDocument();
+    expect(courseDuration).toBeInTheDocument();
   });
 });
