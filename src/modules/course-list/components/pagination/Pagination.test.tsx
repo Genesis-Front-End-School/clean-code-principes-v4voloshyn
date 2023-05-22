@@ -5,9 +5,8 @@ import { Mock, vi } from 'vitest';
 import { Pagination } from './Pagination.component';
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+  const actual: object = await vi.importActual('react-router-dom');
   return {
-    // @ts-ignore
     ...actual,
     useLocation: vi.fn(),
   };
