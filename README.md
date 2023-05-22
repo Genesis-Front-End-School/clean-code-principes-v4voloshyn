@@ -4,9 +4,9 @@
 
 <br/>
 
-##  🔴Warn👇👇👇
+## 🔴Warn👇👇👇
 
-### For fetching data you need to download this extension: [Home page](https://mybrowseraddon.com/access-control-allow-origin.html) to allow CORS access to the API of the App. This extension available for [Google Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) | [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin/) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/bhjepjpgngghppolkjdhckmnfphffdag)
+### To ensure correct functioning of the application you need to download this extension: [Home page](https://mybrowseraddon.com/access-control-allow-origin.html) to allow CORS access to the API of the App. This extension available for [Google Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) | [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin/) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/bhjepjpgngghppolkjdhckmnfphffdag)
 
 <br/>
 
@@ -35,15 +35,15 @@
     - ✅ Playing video on image hover
     <hr/>
 - ⬜ Single Course page:
-- - ✅ Videoframe with videoSrc
+- - ✅ Video frame with videoSrc
 - - ✅ Lessons list
 - - ✅ Course description
-- - ⬜ Save videoplaying progress
+- - ⬜ Save video playing progress
 - - ⬜ Save lessons learning progress
   - \*Extra:
   - ⬜ PIP (Picture-In-Picture) in right bottom corner
   - ⬜ Changing video playing speed (use any keyCode)
-    - ⬜ Put this information in videoframe
+    - ⬜ Put this information in video frame
 
   <hr/>
 
