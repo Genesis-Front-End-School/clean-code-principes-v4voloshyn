@@ -25,7 +25,7 @@ export const mockLessonData: IVideoLesson[] = [
   },
 ];
 
-export const fakeCourse: ICourse = {
+export const mockCourse: ICourse = {
   id: '1',
   title: 'Course 1',
   description: 'This is course 1',
@@ -45,7 +45,7 @@ export const fakeCourse: ICourse = {
   containsLockedLessons: false,
 };
 
-export const fakeCourses: Partial<ICourse>[] = [
+export const mockCourses: Partial<ICourse>[] = [
   {
     id: '1',
     title: 'Course 1',

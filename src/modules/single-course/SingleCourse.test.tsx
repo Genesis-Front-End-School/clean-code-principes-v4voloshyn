@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import { Mock, MockedFunction, vi } from 'vitest';
 
-import { fakeCourse } from '../../tests/__mocks__/course-data';
+import { mockCourse } from '../../tests/__mocks__/course-data';
 
 import { SingleCourse } from './SingleCourse.module';
 
@@ -40,7 +40,7 @@ describe('Single course page', () => {
   >;
 
   beforeEach(() => {
-    (useLoaderDataMock as Mock).mockReturnValue(fakeCourse);
+    (useLoaderDataMock as Mock).mockReturnValue(mockCourse);
     (useNavigationMock as Mock).mockResolvedValue({ state: 'idle' });
   });
 
@@ -58,13 +58,13 @@ describe('Single course page', () => {
   it('renders the course data when it is loaded', () => {
     render(<SingleCourse />);
 
-    expect(screen.getByText(fakeCourse.title)).toBeInTheDocument();
+    expect(screen.getByText(mockCourse.title)).toBeInTheDocument();
     expect(
-      screen.getByText(`Slug: ${fakeCourse.meta.slug}`)
+      screen.getByText(`Slug: ${mockCourse.meta.slug}`)
     ).toBeInTheDocument();
-    expect(screen.getByText(fakeCourse.description)).toBeInTheDocument();
+    expect(screen.getByText(mockCourse.description)).toBeInTheDocument();
     expect(
-      screen.getByText(`Progress 0 / ${fakeCourse.lessons.length}`)
+      screen.getByText(`Progress 0 / ${mockCourse.lessons.length}`)
     ).toBeInTheDocument();
     expect(screen.getByText(`5min total`)).toBeInTheDocument();
   });

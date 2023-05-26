@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { Mock, vi } from 'vitest';
 
-import { fakeSingleCourse } from '../../tests/__mocks__/api-data';
+import { mockSingleCourse } from '../../tests/__mocks__/api-data';
 
 import { CustomErrorResponse, getRequest } from './api';
 import { instance } from './instance';
@@ -16,7 +16,7 @@ describe('getRequest', () => {
   it('should make a GET request with the correct arguments and return the response data', async () => {
     const fakeEndpoint = '/courses/1';
     const fakeParams = { foo: 'bar' };
-    const axiosResponse = { data: fakeSingleCourse };
+    const axiosResponse = { data: mockSingleCourse };
     (instance.get as Mock).mockResolvedValue(axiosResponse);
 
     const response = await getRequest(fakeEndpoint, fakeParams);
@@ -28,7 +28,7 @@ describe('getRequest', () => {
         'Content-Type': 'application/json',
       },
     });
-    expect(response).toEqual(fakeSingleCourse);
+    expect(response).toEqual(mockSingleCourse);
   });
 
   it('should throw an error if the request fails with an Axios error', async () => {
