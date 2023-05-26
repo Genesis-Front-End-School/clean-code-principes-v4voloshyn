@@ -1,2 +1,9 @@
+#Configs
 vite.config.ts
+
+# Build
+dist
+
+# Test
 src/tests/setupTests.ts
+coverage

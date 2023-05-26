@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import { MockedFunction, vi } from 'vitest';
 
 import {
-  fakeResponseData,
-  fakeTokenData,
+  mockResponseData,
+  mockTokenData,
 } from '../../../tests/__mocks__/api-data';
 import { BASE_URL } from '../constants';
 import { AUTH } from '../endpoints';
@@ -21,7 +21,7 @@ describe('getToken request', () => {
 
   it('should call the correct URL', async () => {
     (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: fakeTokenData,
+      data: mockTokenData,
     } as AxiosResponse<TokenResponse>);
 
     await getToken();
@@ -30,7 +30,7 @@ describe('getToken request', () => {
   });
 
   it('should return the token from the response', async () => {
-    const expectedToken = fakeTokenData.token;
+    const expectedToken = mockTokenData.token;
     (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: { token: expectedToken },
     } as AxiosResponse<TokenResponse>);
@@ -56,7 +56,7 @@ describe('getToken request', () => {
       'Failed to get token: Invalid response shape. Missing token'
     );
     (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: fakeResponseData,
+      data: mockResponseData,
     } as AxiosResponse<unknown>);
 
     await expect(getToken()).rejects.toThrow(expectedError);

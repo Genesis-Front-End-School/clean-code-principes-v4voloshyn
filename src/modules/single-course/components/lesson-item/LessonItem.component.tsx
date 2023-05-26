@@ -3,7 +3,10 @@ import { FC } from 'react';
 import { FaLock, FaPlayCircle, FaUnlink } from 'react-icons/fa';
 
 import { IVideoLesson } from '../../../../shared/@types/types';
-import { formatPreviewImageURL } from '../../utils/utils';
+import {
+  formatLessonDurationInMin,
+  formatPreviewImageURL,
+} from '../../utils/utils';
 
 import './LessonItem.scss';
 
@@ -22,7 +25,7 @@ export const LessonItem: FC<Props> = ({
   const isLessonLocked = status === 'locked';
   const noVideoLink = !link || link.length === 0;
   const isLessonActive = !noVideoLink && activeLessonVideoLink === link;
-  const lessonDurationInMin = Math.round(duration / 60);
+  const lessonDurationInMin = formatLessonDurationInMin(duration);
 
   const selectLessonToView = () => {
     if (!isLessonLocked) {

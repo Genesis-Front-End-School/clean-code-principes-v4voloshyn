@@ -1,10 +1,8 @@
+import { Button, Spinner, VideoPlayer } from 'gfs-components-lib';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../../../shared/UI/button/Button.component';
-import { Spinner } from '../../../../shared/UI/spinner/Spinner.component';
-import { VideoPlayer } from '../../../../shared/components/video-player/VideoPlayer.component';
 import { CourseItemPreview } from '../../@types/types';
 import { SkillsList } from '../skills-list/SkillsList.component';
 
@@ -76,7 +74,11 @@ export const CourseCard: FC<Props> = ({ courseData }) => {
             onReady={() => {}}
           />
         ) : (
-          <img src={`${previewImageLink}/cover.webp`} alt={title} />
+          <img
+            src={`${previewImageLink}/cover.webp`}
+            alt={title}
+            loading="lazy"
+          />
         )}
       </div>
       <div className="card__body">

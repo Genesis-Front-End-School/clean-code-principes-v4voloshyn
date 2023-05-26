@@ -1,3 +1,4 @@
+import { Spinner, VideoPlayer } from 'gfs-components-lib';
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
@@ -6,8 +7,6 @@ import {
   IVideoLesson,
   VideoPlayerSrcLinks,
 } from '../../shared/@types/types';
-import { Spinner } from '../../shared/UI/spinner/Spinner.component';
-import { VideoPlayer } from '../../shared/components/video-player/VideoPlayer.component';
 
 import { LessonsList } from './components/lessons-list/LessonsList.component';
 import {

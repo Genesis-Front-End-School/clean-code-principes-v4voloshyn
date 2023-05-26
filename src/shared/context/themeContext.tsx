@@ -1,3 +1,4 @@
+import { useLocalStorage } from 'gfs-components-lib';
 import {
   createContext,
   useCallback,
@@ -5,8 +6,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-
-import { useLocalStorage } from '../hooks/useStorage';
 
 export type ThemeType = 'light' | 'dark';
 
