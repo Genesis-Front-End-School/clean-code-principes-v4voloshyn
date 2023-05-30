@@ -2,7 +2,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { useLoaderData } from 'react-router-dom';
 import { Mock, MockedFunction, vi } from 'vitest';
 
-import { ICourse, IVideoLesson } from '../../../../shared/@types/types';
+import { ICourse } from '../../../../shared/@types/types';
+import { mockLessonData } from '../../../../tests/__mocks__/course-data';
 
 import { LessonsList } from './LessonsList.component';
 
@@ -18,30 +19,6 @@ describe('LessonsList', () => {
   const useLoaderDataMock = useLoaderData as MockedFunction<
     typeof useLoaderData
   >;
-  const mockLessonData: IVideoLesson[] = [
-    {
-      id: '1',
-      title: 'Lesson 1',
-      link: 'https://example.com/video1',
-      previewImageLink: 'https://example.com/image1',
-      order: 1,
-      duration: 0,
-      meta: {},
-      status: 'unlocked',
-      type: 'video',
-    },
-    {
-      id: '2',
-      title: 'Lesson 2',
-      link: 'https://example.com/video2',
-      previewImageLink: 'https://example.com/image2',
-      order: 2,
-      duration: 0,
-      meta: {},
-      status: 'unlocked',
-      type: 'video',
-    },
-  ];
 
   const mockCourseData: Pick<ICourse, 'id' | 'title' | 'lessons'> = {
     id: '1',
@@ -61,7 +38,9 @@ describe('LessonsList', () => {
       />
     );
 
-    expect(getByText('1. Lesson 1')).toBeInTheDocument();
+    const firstLessonWithTitle = getByText(/1\. Lesson Title 1/i);
+
+    expect(firstLessonWithTitle).toBeInTheDocument();
   });
 
   it('renders the correct number of LessonItem components', () => {
@@ -72,7 +51,9 @@ describe('LessonsList', () => {
       />
     );
 
-    expect(getAllByText(/lesson/i).length).toBe(mockLessonData.length);
+    const lessonsListLength = getAllByText(/lesson title/i).length;
+
+    expect(lessonsListLength).toBe(mockLessonData.length);
   });
 
   it('calls handleChangeLessonData when LessonItem is clicked', async () => {
@@ -83,7 +64,7 @@ describe('LessonsList', () => {
       />
     );
 
-    const lessonItem = getByText(/lesson 1/i);
+    const lessonItem = getByText(/lesson title 1/i);
 
     expect(lessonItem).toBeInTheDocument();
 

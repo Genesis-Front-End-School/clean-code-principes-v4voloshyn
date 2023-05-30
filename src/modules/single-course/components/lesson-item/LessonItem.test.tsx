@@ -7,6 +7,15 @@ import { LessonItem } from './LessonItem.component';
 
 global.scrollTo = vi.fn() as Mock;
 
+vi.mock('.././../utils/utils.ts', async () => {
+  const actual: object = await vi.importActual('.././../utils/utils.ts');
+  const LESSON_DURATION_IN_MIN = 3;
+  return {
+    ...actual,
+    formatLessonDurationInMin: () => LESSON_DURATION_IN_MIN,
+  };
+});
+
 const mockLesson: IVideoLesson = {
   id: '123',
   title: 'Test Lesson',
@@ -20,30 +29,31 @@ const mockLesson: IVideoLesson = {
 };
 
 describe('LessonItem component', () => {
+  const handleChangeLessonDataMock = vi.fn();
+
   it('renders correctly', () => {
     const { getByText, getByRole } = render(
       <LessonItem
         lessonData={mockLesson}
-        handleChangeLessonData={() => {}}
+        handleChangeLessonData={handleChangeLessonDataMock}
         activeLessonVideoLink=""
       />
     );
 
     const titleElement = getByText('1. Test Lesson');
-    const descriptionElement = getByText('3min');
+    const lessonDurationInMin = getByText('3min');
     const checkboxElement = getByRole('checkbox');
 
     expect(titleElement).toBeInTheDocument();
-    expect(descriptionElement).toBeInTheDocument();
+    expect(lessonDurationInMin).toBeInTheDocument();
     expect(checkboxElement).toBeInTheDocument();
   });
 
   it('calls handleChangeLessonData when lesson is clicked', () => {
-    const mockHandleChangeLessonData = vi.fn();
     const { getByRole } = render(
       <LessonItem
         lessonData={mockLesson}
-        handleChangeLessonData={mockHandleChangeLessonData}
+        handleChangeLessonData={handleChangeLessonDataMock}
         activeLessonVideoLink=""
       />
     );
@@ -51,7 +61,7 @@ describe('LessonItem component', () => {
     const lessonButton = getByRole('button');
     fireEvent.click(lessonButton);
 
-    expect(mockHandleChangeLessonData).toHaveBeenCalledWith(
+    expect(handleChangeLessonDataMock).toHaveBeenCalledWith(
       'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
       'https://example.com/image-preview/lesson-1.webp'
     );

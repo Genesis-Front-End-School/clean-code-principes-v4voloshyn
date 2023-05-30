@@ -1,3 +1,5 @@
 import { Layout } from '../shared/UI/layout/Layout.component';
 
-export const App = () => <Layout />;
+const App = () => <Layout />;
+
+export default App;

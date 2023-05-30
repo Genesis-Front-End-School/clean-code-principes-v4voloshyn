@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import { CourseList } from '../../modules/course-list/CourseList.module';
 
-export const Home: FC = () => {
+const Home: FC = () => {
   return <CourseList />;
 };
+
+export default Home;

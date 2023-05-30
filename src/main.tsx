@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { Spinner } from './shared/UI/spinner/Spinner.component';
 import { ThemeProvider } from './shared/context/themeContext';
-import { router } from './shared/routes/routes';
+import { router } from './shared/routes/router';
 
 import './shared/styles/global.scss';
 

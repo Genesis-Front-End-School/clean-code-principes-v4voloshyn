@@ -10,6 +10,12 @@ export const getTotalLessonsDurationInMin = (
   return Math.round(totalDurationInMin);
 };
 
+export const formatLessonDurationInMin = (
+  durationInSeconds: number
+): number => {
+  return Math.round(durationInSeconds / 60);
+};
+
 export const formatSlug = (slug: string): string => {
   if (slug.length <= 0 || typeof slug !== 'string') {
     return '';

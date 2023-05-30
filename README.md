@@ -2,7 +2,6 @@
 
 ## 🚀 Current version of the app you can see here: [Live App on Vercel](https://gfs-app.vercel.app/)
 
-
 ## 🔴Warn👇👇👇
 
 ### To ensure correct functioning of the application you need to download this extension: [Home page](https://mybrowseraddon.com/access-control-allow-origin.html) to allow CORS access to the API of the App. This extension available for [Google Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) | [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin/) | [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/bhjepjpgngghppolkjdhckmnfphffdag)
