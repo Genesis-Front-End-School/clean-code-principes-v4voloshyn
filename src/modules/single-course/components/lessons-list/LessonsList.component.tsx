@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FC, useMemo } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
@@ -11,6 +12,15 @@ interface Props {
   activeLessonVideoLink: string;
 }
 
+const componentAnimations = {
+  initial: { opacity: 0, x: 50 },
+  onScreen: {
+    opacity: 1,
+    x: 0,
+    transition: { delay: 0.1, duration: 0.5 },
+  },
+};
+
 export const LessonsList: FC<Props> = ({
   handleChangeLessonData,
   activeLessonVideoLink,
@@ -22,7 +32,13 @@ export const LessonsList: FC<Props> = ({
   }, [lessons]);
 
   return (
-    <div className="lesson__list">
+    <motion.div
+      variants={componentAnimations}
+      initial="initial"
+      whileInView="onScreen"
+      viewport={{ once: true }}
+      className="lesson__list"
+    >
       {sortedVideoLessonsByASCOrder.map((lesson) => {
         return (
           <LessonItem
@@ -33,6 +49,6 @@ export const LessonsList: FC<Props> = ({
           />
         );
       })}
-    </div>
+    </motion.div>
   );
 };

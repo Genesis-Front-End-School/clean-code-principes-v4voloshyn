@@ -20,12 +20,14 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    '@typescript-eslint/no-use-before-define': 0,
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
+    'react/prop-types': 0,
+    'react/require-default-props': 0,
     'import/prefer-default-export': 0,
     'import/no-cycle': 0,
     'no-console': 1,
-    'react/require-default-props': 0,
     'prefer-destructuring': 0,
     'no-param-reassign': 0,
     'import/order': [

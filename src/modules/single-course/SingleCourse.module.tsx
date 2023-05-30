@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 
@@ -17,6 +18,11 @@ import {
 } from './utils/utils';
 
 import './SingleCourse.scss';
+
+const componentAnimations = {
+  hidden: { opacity: 0, y: 50 },
+  onScreen: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } },
+};
 
 export const SingleCourse: FC = () => {
   const {
@@ -65,7 +71,13 @@ export const SingleCourse: FC = () => {
 
   return (
     <div className="course course__wrapper">
-      <div className="course__main">
+      <motion.div
+        className="course__main"
+        variants={componentAnimations}
+        initial="hidden"
+        animate="onScreen"
+        viewport={{ once: true }}
+      >
         <div className="player__wrapper">
           <VideoPlayer
             srcUrl={hlsUrl}
@@ -78,7 +90,7 @@ export const SingleCourse: FC = () => {
           <h4 className="course__slag">Slug: {courseSlug}</h4>
           <p className="course__descr">{description}</p>
         </div>
-      </div>
+      </motion.div>
       <div className="course__lessons">
         <div className="course__lessons-info">
           <div className="course__lessons-progress">
